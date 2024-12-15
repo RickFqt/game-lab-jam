@@ -1,0 +1,15 @@
+# Arquivos e diretórios do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários do Godot
+imported/
+*.import
+
+# Arquivos de build (opcional, depende do projeto)
+bin/
+*.exe
+*.pck
+
+# Configurações locais específicas de usuário
+*.tmp
