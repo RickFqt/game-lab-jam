@@ -5,6 +5,7 @@ Thumbs.db
 # Arquivos temporários do Godot
 imported/
 *.import
+.godot
 
 # Arquivos de build (opcional, depende do projeto)
 bin/
