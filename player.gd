@@ -4,6 +4,9 @@ signal health_depleted
 
 var health = 100.0
 
+var weapons_inventory : Array = []
+var items_inventory : Array = []
+
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * 600
@@ -21,3 +24,14 @@ func _physics_process(delta: float) -> void:
 		%ProgressBar.value = health
 		if health <= 0.0:
 			health_depleted.emit()
+
+func add_weapon(weapon_scene: PackedScene) -> void:
+	weapons_inventory.append(weapon_scene.instantiate())
+	call_deferred("_add_weapon", weapons_inventory[-1])
+
+func _add_weapon(weapon: Weapon):
+	add_child(weapon)
+	
+
+#func add_item(item: Item) -> void:
+	#items_inventory.append(item)

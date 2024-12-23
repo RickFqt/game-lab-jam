@@ -1,4 +1,4 @@
-extends Area2D
+extends Weapon
 
 
 func _physics_process(delta: float) -> void:
