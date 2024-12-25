@@ -53,3 +53,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
 value = 100.0
 show_percentage = false
+
+[connection signal="player_attributes_changed" from="." to="." method="_on_player_attributes_changed"]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 3
+var health = 30
 
 @onready var player = get_node("/root/Game/Player")
 
@@ -12,8 +12,10 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * 300.0
 	move_and_slide()
 
-func take_damage():
-	health -= 1
+func take_damage(damage: int):
+	health -= damage
+	if health < 0:
+		health = 0
 	%Slime.play_hurt()
 	
 	if health == 0:
