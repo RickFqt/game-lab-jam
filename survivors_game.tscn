@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7npo058rrn3j"]
+[gd_scene load_steps=7 format=3 uid="uid://b7npo058rrn3j"]
 
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="1_v3u04"]
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
 [ext_resource type="PackedScene" uid="uid://c7ge66aw855vb" path="res://pine_tree.tscn" id="2_hd8h6"]
 [ext_resource type="PackedScene" uid="uid://cv3k0baaetmhg" path="res://mob.tscn" id="3_tkeo2"]
+[ext_resource type="PackedScene" uid="uid://bkw84fr78vnnm" path="res://treasure_box.tscn" id="5_h6nmn"]
 
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
@@ -92,6 +93,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 161
 text = "Game Over"
+
+[node name="TreasureBox" parent="." instance=ExtResource("5_h6nmn")]
+position = Vector2(412, 92)
+
+[node name="TreasureBox2" parent="." instance=ExtResource("5_h6nmn")]
+position = Vector2(165, 592)
+
+[node name="TreasureBox3" parent="." instance=ExtResource("5_h6nmn")]
+position = Vector2(911, 137)
+
+[node name="TreasureBox4" parent="." instance=ExtResource("5_h6nmn")]
+position = Vector2(505, 272)
+
+[node name="TreasureBox5" parent="." instance=ExtResource("5_h6nmn")]
+position = Vector2(1456, 462)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

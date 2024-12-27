@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt4d6pm5r0re2"]
+[gd_scene load_steps=7 format=3 uid="uid://dt4d6pm5r0re2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_112fg"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_cikh4"]
-[ext_resource type="PackedScene" uid="uid://c248dt6ocf0t2" path="res://gun.tscn" id="3_0ei8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwma"]
 radius = 30.0
@@ -35,9 +34,6 @@ shape = SubResource("CircleShape2D_wrwma")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Gun" parent="." instance=ExtResource("3_0ei8h")]
-position = Vector2(0, -39)
-
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
@@ -57,3 +53,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
 value = 100.0
 show_percentage = false
+
+[connection signal="player_attributes_changed" from="." to="." method="_on_player_attributes_changed"]
