@@ -25,3 +25,11 @@ func take_damage(damage: int):
 		var smoke = SMOKE_SCENE.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+		spawn_exp_shard()
+
+func spawn_exp_shard():
+	var exp_shard = preload("res://collectables/scenes/exp_shard.tscn").instantiate()
+	exp_shard.global_position = global_position
+	exp_shard.player_target = player
+	exp_shard.connect_to_player()
+	get_parent().add_child(exp_shard)

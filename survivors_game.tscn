@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
 [ext_resource type="PackedScene" uid="uid://c7ge66aw855vb" path="res://pine_tree.tscn" id="2_hd8h6"]
 [ext_resource type="PackedScene" uid="uid://cv3k0baaetmhg" path="res://mob.tscn" id="3_tkeo2"]
-[ext_resource type="PackedScene" uid="uid://bkw84fr78vnnm" path="res://treasure_box.tscn" id="5_h6nmn"]
+[ext_resource type="PackedScene" uid="uid://bkw84fr78vnnm" path="res://collectables/scenes/treasure_box.tscn" id="5_h6nmn"]
 
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
