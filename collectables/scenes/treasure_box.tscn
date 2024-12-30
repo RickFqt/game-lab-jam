@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkw84fr78vnnm"]
 
-[ext_resource type="Script" path="res://treasure_box.gd" id="1_gp17u"]
+[ext_resource type="Script" path="res://collectables/scripts/treasure_box.gd" id="1_gp17u"]
 [ext_resource type="Texture2D" uid="uid://dftkbqwsfd68r" path="res://pistol/projectile.png" id="2_t8w6q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_etv6i"]

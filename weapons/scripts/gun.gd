@@ -6,14 +6,14 @@ func _ready() -> void:
 	attributes.base_speed = 1000
 	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var enemies_in_range = get_overlapping_bodies()
 	if enemies_in_range.size() > 0:
 		var target_enemy = enemies_in_range.front()
 		look_at(target_enemy.global_position)
 
 func shoot():
-	const BULLET = preload("res://weapons/scenes/bullet.tscn")
+	const BULLET = preload("res://weapons/aux_scenes/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
@@ -28,17 +28,17 @@ func _on_timer_timeout() -> void:
 
 func level_up(amount: int) -> void:
 	for i in amount:
-		level += 1
 		_level_up()
 	
 func _level_up() -> void:
-	if level == 2:
+	if level == 1:
 		attributes.base_damage += 12
+	elif level == 2:
+		attributes.base_cooldown /= 2.0
 	elif level == 3:
-		attributes.base_cooldown /= 2.0
-	elif level == 4:
 		attributes.base_damage += 15
-	elif level == 5:
+	elif level == 4:
 		attributes.base_cooldown /= 2.0
-	elif level == 6:
+	elif level == 5:
 		attributes.base_speed *= 1.5
+	level += 1

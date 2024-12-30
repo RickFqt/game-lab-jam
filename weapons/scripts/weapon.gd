@@ -6,7 +6,7 @@ var attributes: Attributes = Attributes.new()
 var player_attributes: PlayerAttributes = PlayerAttributes.new()
 var level: int = 1
 
-func level_up(level : int) -> void:
+func level_up(_amount : int) -> void:
 	pass
 
 func calculate_area() -> float:
@@ -26,3 +26,6 @@ func calculate_duration() -> float:
 
 func update_player_attributes(p_att : PlayerAttributes) -> void:
 	player_attributes = p_att
+
+func reached_max_level() -> bool:
+	return attributes.max_level <= attributes.level

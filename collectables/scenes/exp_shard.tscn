@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciyvtv4g1twwg"]
+
+[ext_resource type="Texture2D" uid="uid://dhapxq8y8ow57" path="res://characters/happy_boo/square_lower_leg.png" id="1_6lpv5"]
+[ext_resource type="Script" path="res://collectables/scripts/exp_shard.gd" id="1_7oere"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hxf0"]
+radius = 100.24
+
+[node name="ExpShard" type="Area2D"]
+light_mask = 0
+script = ExtResource("1_7oere")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.176471, 0, 1)
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.91875, 1.17383)
+texture = ExtResource("1_6lpv5")
+
+[node name="CollectArea" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_4hxf0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
