@@ -7,7 +7,7 @@ var health = 30
 func _ready() -> void:
 	%Slime.play_walk()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * 300.0
 	move_and_slide()
@@ -31,5 +31,8 @@ func spawn_exp_shard():
 	var exp_shard = preload("res://collectables/scenes/exp_shard.tscn").instantiate()
 	exp_shard.global_position = global_position
 	exp_shard.player_target = player
-	exp_shard.connect_to_player()
+	#exp_shard.connect_to_player()
+	call_deferred("_spawn_exp_shard", exp_shard)
+
+func _spawn_exp_shard(exp_shard):
 	get_parent().add_child(exp_shard)

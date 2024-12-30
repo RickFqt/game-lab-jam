@@ -15,3 +15,5 @@ var cooldown_mult: float = 1.0
 var speed_mult: float = 1.0
 var duration_mult: float = 1.0
 var level: int = 1
+var weapons_inventory_size: int = 6
+var items_inventory_size: int = 6
