@@ -10,7 +10,7 @@ radius = 21.0
 collision_mask = 0
 
 [node name="GroundShadow" type="Sprite2D" parent="."]
-modulate = Color(0.713726, 0.870588, 0.894118, 1)
+modulate = Color(0.0923396, 0.182543, 0.195647, 1)
 position = Vector2(0, 2)
 scale = Vector2(1, 0.730769)
 texture = ExtResource("1_jvdk4")

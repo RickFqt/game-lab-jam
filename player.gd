@@ -5,7 +5,7 @@ signal player_attributes_changed
 
 var player_attributes : PlayerAttributes = PlayerAttributes.new()
 var experience: int = 0
-var experience_needed: int = 1
+var experience_needed: int = 100
 
 var weapons_inventory : Dictionary = {}
 var items_inventory : Array = []
@@ -43,10 +43,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		%HappyBoo.play_idle_animation()
 	
-	const DAMAGE_RATE = 5.0
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
-		player_attributes.health -= DAMAGE_RATE * overlapping_mobs.size() * delta
+		var damage_taken = 0
+		for mob in overlapping_mobs:
+			damage_taken += mob.damage
+		player_attributes.health -= damage_taken * delta
 		%HealthBar.value = player_attributes.health
 		player_attributes_changed.emit()
 		if player_attributes.health <= 0.0:
