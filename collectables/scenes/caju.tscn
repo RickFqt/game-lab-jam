@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6bpdeyx7ew0t"]
+
+[ext_resource type="Script" path="res://collectables/scripts/caju.gd" id="1_2c3qo"]
+[ext_resource type="Texture2D" uid="uid://drjdqbymyucep" path="res://textures/caju.png" id="1_s6cyu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuitm"]
+radius = 100.24
+
+[node name="Caju" type="Area2D"]
+script = ExtResource("1_2c3qo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.05176e-05, 3.8147e-06)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_s6cyu")
+
+[node name="CollectArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yuitm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

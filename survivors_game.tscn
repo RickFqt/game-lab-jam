@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://b7npo058rrn3j"]
+[gd_scene load_steps=8 format=4 uid="uid://b7npo058rrn3j"]
 
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="1_v3u04"]
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
 [ext_resource type="TileSet" uid="uid://bv2h2f75u87mm" path="res://grass_tileset.tres" id="2_ewt36"]
 [ext_resource type="PackedScene" uid="uid://c7ge66aw855vb" path="res://pine_tree.tscn" id="2_hd8h6"]
 [ext_resource type="PackedScene" uid="uid://bkw84fr78vnnm" path="res://collectables/scenes/treasure_box.tscn" id="5_h6nmn"]
+[ext_resource type="PackedScene" uid="uid://cqjayu8xkc2jr" path="res://mato.tscn" id="6_vrs17"]
 
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
@@ -60,6 +61,11 @@ position = Vector2(1304, 224)
 [node name="PineTree7" parent="." instance=ExtResource("2_hd8h6")]
 position = Vector2(1424, 232)
 
+[node name="SpawnMatoTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+autostart = true
+
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.3
@@ -100,6 +106,22 @@ position = Vector2(964, 338)
 wait_time = 180.0
 autostart = true
 
+[node name="Mato3" parent="." instance=ExtResource("6_vrs17")]
+position = Vector2(1211, 515)
+
+[node name="Mato2" parent="." instance=ExtResource("6_vrs17")]
+position = Vector2(1077, 683)
+
+[node name="Mato5" parent="." instance=ExtResource("6_vrs17")]
+position = Vector2(650, 798)
+
+[node name="Mato4" parent="." instance=ExtResource("6_vrs17")]
+position = Vector2(570, 471)
+
+[node name="Mato" parent="." instance=ExtResource("6_vrs17")]
+position = Vector2(823, 667)
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SpawnMatoTimer" to="." method="_on_spawn_mato_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

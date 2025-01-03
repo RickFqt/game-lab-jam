@@ -13,7 +13,7 @@ var items_inventory : Array = []
 var weapon_scenes: Array[PackedScene]
 
 func _ready():
-	%HealthBar.max_value = player_attributes.health
+	%HealthBar.max_value = player_attributes.max_health
 	%ExperienceBar.max_value = experience_needed
 	%ExperienceBar.value = 0
 	load_weapon_scenes()
@@ -87,6 +87,10 @@ func add_experience(amount: int) -> void:
 	if experience >= experience_needed:
 		level_up()
 	%ExperienceBar.value = experience
+
+func add_health(amount: int) -> void:
+	player_attributes.health = min(player_attributes.health + amount, player_attributes.max_health)
+	%HealthBar.value = player_attributes.health
 
 func level_up():
 	player_attributes.level += 1

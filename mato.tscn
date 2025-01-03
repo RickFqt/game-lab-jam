@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqjayu8xkc2jr"]
+
+[ext_resource type="Texture2D" uid="uid://cmsoc7bxl2w52" path="res://textures/bush.png" id="1_4y5hv"]
+[ext_resource type="Script" path="res://mato.gd" id="1_w2sbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nell"]
+size = Vector2(74, 72)
+
+[node name="Mato" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_w2sbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_5nell")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -36)
+scale = Vector2(4.6875, 4.4375)
+texture = ExtResource("1_4y5hv")
