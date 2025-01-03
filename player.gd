@@ -16,6 +16,7 @@ func _ready():
 	%HealthBar.max_value = player_attributes.max_health
 	%ExperienceBar.max_value = experience_needed
 	%ExperienceBar.value = 0
+	%AnimatedSprite2D.play("default")
 	load_weapon_scenes()
 
 func load_weapon_scenes():
@@ -38,10 +39,10 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * player_attributes.speed
 	move_and_slide()
 	
-	if velocity.length() > 0.0:
-		%HappyBoo.play_walk_animation()
-	else:
-		%HappyBoo.play_idle_animation()
+	#if velocity.length() > 0.0:
+		#%HappyBoo.play_walk_animation()
+	#else:
+		#%HappyBoo.play_idle_animation()
 	
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
