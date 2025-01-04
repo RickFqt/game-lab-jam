@@ -24,6 +24,9 @@ func calculate_speed() -> float:
 func calculate_duration() -> float:
 	return attributes.base_duration * player_attributes.duration_mult
 
+func calculate_projectiles() -> int:
+	return attributes.n_projectiles + player_attributes.n_projectiles
+
 func update_player_attributes(p_att : PlayerAttributes) -> void:
 	player_attributes = p_att
 
