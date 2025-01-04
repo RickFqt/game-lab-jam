@@ -3,7 +3,7 @@ extends Weapon
 func _ready() -> void:
 	attributes.base_cooldown = 0.3
 	attributes.base_damage = 10
-	attributes.base_speed = 1000
+	attributes.base_speed = 500
 	
 
 func _physics_process(_delta: float) -> void:

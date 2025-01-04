@@ -3,7 +3,7 @@ extends Area2D
 var value: int = 10  # Valor da moeda em experiência
 var is_attracted: bool = false
 var player_target: Node2D = null
-var attraction_speed: float = 500.0
+var attraction_speed: float = 210.0
 
 func _ready():
 	add_to_group("experience_coins")  # Adiciona ao grupo para fácil acesso
@@ -27,7 +27,7 @@ func _process(delta: float):
 			position += direction * attraction_speed * delta
 
 		# Se estiver perto o suficiente, adiciona experiência e remove a moeda
-		if global_position.distance_to(player_target.global_position) < 30.0:
+		if global_position.distance_to(player_target.global_position) < 15.0:
 			player_target.add_health(value)
 			queue_free()
 

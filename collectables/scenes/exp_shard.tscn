@@ -8,6 +8,7 @@ radius = 100.24
 
 [node name="ExpShard" type="Area2D"]
 light_mask = 0
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_7oere")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -16,7 +16,7 @@ func _ready():
 	%HealthBar.max_value = player_attributes.max_health
 	%ExperienceBar.max_value = experience_needed
 	%ExperienceBar.value = 0
-	%AnimatedSprite2D.play("default")
+	%AnimatedSprite2D.play("walking")
 	load_weapon_scenes()
 
 func load_weapon_scenes():
@@ -38,6 +38,15 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * player_attributes.speed
 	move_and_slide()
+	if Input.is_action_pressed("move_left"):
+		%AnimatedSprite2D.scale.x = abs(%AnimatedSprite2D.scale.x)
+	elif Input.is_action_pressed("move_right"):
+		%AnimatedSprite2D.scale.x = - abs(%AnimatedSprite2D.scale.x)
+	
+	if !is_moving():
+		%AnimatedSprite2D.play("idle")
+	else:
+		%AnimatedSprite2D.play("walking")
 	
 	#if velocity.length() > 0.0:
 		#%HappyBoo.play_walk_animation()
@@ -118,3 +127,6 @@ func draw_weapon_or_item():
 func _on_player_attributes_changed() -> void:
 	for weapon in weapons_inventory.values():
 		weapon.update_player_attributes(player_attributes)
+
+func is_moving():
+	return Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left") || Input.is_action_pressed("move_up") || Input.is_action_pressed("move_down")

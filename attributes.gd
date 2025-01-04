@@ -7,6 +7,6 @@ var base_area: float = 1.0
 var base_damage: float = 10.0
 var n_projectiles: int = 1
 var base_cooldown: float = 1.0
-var base_speed: float = 100.0
+var base_speed: float = 2.0
 var base_duration: float = 1.0
 var max_level: int = 6

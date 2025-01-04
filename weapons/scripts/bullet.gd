@@ -1,9 +1,9 @@
 extends Area2D
 
-const RANGE = 1200
+const RANGE = 600
 var travelled_distance = 0
 var damage = 1
-var speed = 1000
+var speed = 2
 
 func _physics_process(delta: float) -> void:
 	

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var health = 30
 var damage = 5
-var speed = 300.0
+var speed = 100.0
 var is_boss: bool = false
 
 @onready var player = get_node("/root/Game/Player")
@@ -16,7 +16,7 @@ func change_to_boss() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 300.0
+	velocity = direction * speed
 	move_and_slide()
 
 func take_damage(damage: int):
@@ -32,6 +32,7 @@ func take_damage(damage: int):
 		var smoke = SMOKE_SCENE.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+		smoke.scale = scale
 		if is_boss:
 			spawn_treasure_box()
 		else:
