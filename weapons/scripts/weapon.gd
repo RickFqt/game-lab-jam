@@ -2,6 +2,7 @@ extends Area2D
 
 class_name Weapon
 
+signal player_attributes_changed
 var attributes: Attributes = Attributes.new()
 var player_attributes: PlayerAttributes = PlayerAttributes.new()
 var level: int = 1
@@ -29,6 +30,8 @@ func calculate_projectiles() -> int:
 
 func update_player_attributes(p_att : PlayerAttributes) -> void:
 	player_attributes = p_att
+	player_attributes_changed.emit()
+	
 
 func reached_max_level() -> bool:
 	return attributes.max_level <= attributes.level

@@ -9,7 +9,7 @@ func _ready() -> void:
 	attributes.base_cooldown = 0.3
 	attributes.base_damage = 10
 	attributes.base_speed = PI
-	attributes.n_projectiles = 4
+	attributes.n_projectiles = 1
 	attributes.base_area = 40.0
 	update_objects()
 
