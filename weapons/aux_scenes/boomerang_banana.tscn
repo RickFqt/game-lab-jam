@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbpxdjdit37tx"]
+
+[ext_resource type="Texture2D" uid="uid://br85jwpug7q8g" path="res://textures/Banana.png" id="1_ccno8"]
+[ext_resource type="Script" path="res://weapons/scripts/boomerang_banana.gd" id="1_lphqm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcqdm"]
+radius = 7.07
+
+[node name="BoomerangBanana" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_lphqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ccno8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kcqdm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
