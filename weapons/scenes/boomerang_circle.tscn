@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://q8qhfh6wa3e0"]
+
+[ext_resource type="Script" path="res://weapons/scripts/boomerang_circle.gd" id="1_h4k4y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ylbp"]
+radius = 200.0
+
+[node name="BoomerangCircle" type="Area2D"]
+script = ExtResource("1_h4k4y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ylbp")
+
+[node name="TimerBoomerang" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.2
+
+[connection signal="timeout" from="TimerBoomerang" to="." method="_on_timer_boomerang_timeout"]
