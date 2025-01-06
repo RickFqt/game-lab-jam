@@ -16,7 +16,7 @@ var weapon_scenes: Array[PackedScene]
 #@onready var lblLevel = get_node("%lbl_level")
 @onready var levelPanel = get_node("%LevelUp")
 @onready var upgradeOptions = get_node("%UpgradeOptions")
-@onready var itemOptions = preload("res://Utility/item_option.tscn")
+@onready var itemOptions = preload("res://utility/item_option.tscn")
 @onready var sndLevelUp = get_node("%snd_levelup")
 @onready var itemContainer = preload("res://player/GUI/item_container.tscn")
 
@@ -72,7 +72,9 @@ func _physics_process(delta: float) -> void:
 		if player_attributes.health <= 0.0:
 			health_depleted.emit()
 
-func add_weapon(weapon_scene: PackedScene, weapon_name: String) -> void:
+func add_weapon(weapon_scene: PackedScene) -> void:
+	
+	var weapon_name = weapon_scene.resource_path.get_file().get_basename()
 	var new_weapon = weapon_scene.instantiate()
 	weapons_inventory[weapon_name] = new_weapon
 	call_deferred("_add_weapon", new_weapon)
@@ -88,17 +90,20 @@ func upgrade_weapons_inventory(weapon_scene: PackedScene) -> void:
 	levelPanel.visible = false
 	levelPanel.position = Vector2(2472,72)
 	get_tree().paused = false
+	
 	var weapon_name = weapon_scene.resource_path.get_file().get_basename()
 	
+	print("nome do weapon: " + weapon_name)
 	if weapons_inventory.has(weapon_name):
 		weapons_inventory[weapon_name].level_up(1)
 		return
-	
-	add_weapon(weapon_scene, weapon_name)
+	print("nao tem o weapon mano")
+	add_weapon(weapon_scene)
 
 func has_weapon(weapon_scene: PackedScene) -> bool:
 	
 	for weapon in weapons_inventory:
+		print("nome do weapon no inventario: " + weapon.name)
 		if weapon.name == weapon_scene.resource_name:
 			return true
 	return false
@@ -124,24 +129,23 @@ func level_up():
 	tween.tween_property(levelPanel,"position",Vector2(560,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	levelPanel.visible = true
-	var options = 0
 	var optionsmax = 3
-	while options < optionsmax:
-		var option_choice = itemOptions.instantiate()
-		#option_choice.item = get_random_item()
-		upgradeOptions.add_child(option_choice)
-		options += 1
-	get_tree().paused = true
+	var chosen_weapons = draw_weapon_or_item(optionsmax)
+	if chosen_weapons.size() > 0:
+		for weapon_scene in chosen_weapons:
+			var option_choice = itemOptions.instantiate()
+			option_choice.item_scene = weapon_scene
+			upgradeOptions.add_child(option_choice)
+		get_tree().paused = true
 	
-	#sndLevelUp.play()
 	player_attributes.level += 1
 	experience -= experience_needed
 	experience_needed += int(experience_needed * 0.7)
 	%ExperienceBar.max_value = experience_needed
-	draw_weapon_or_item()
+	#draw_weapon_or_item()
 	player_attributes_changed.emit()
 
-func draw_weapon_or_item():
+func draw_weapon_or_item(amount : int = 3) -> Array[PackedScene]:
 	var weapons_pool: Array[PackedScene] = []
 	#var items_pool
 		
@@ -150,9 +154,14 @@ func draw_weapon_or_item():
 			continue
 		weapons_pool.append(weapon)
 	
-	if weapons_pool.size() > 0:
-		var chosen_weapon = weapons_pool[randi() % weapons_pool.size()]
-		upgrade_weapons_inventory(chosen_weapon)	
+	weapons_pool.shuffle()
+	var chosen_weapons : Array[PackedScene] = []
+	var pool_size = weapons_pool.size()
+	for i in amount:
+		if i < pool_size:
+			chosen_weapons.append(weapons_pool[i])
+
+	return chosen_weapons
 
 func adjust_gui_collection(item):
 	

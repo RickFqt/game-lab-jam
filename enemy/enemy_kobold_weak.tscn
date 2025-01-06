@@ -52,6 +52,7 @@ script = ExtResource("1_5xcv4")
 health = 10
 damage = 1
 speed = 20.0
+experience = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)

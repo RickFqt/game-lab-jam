@@ -7,7 +7,8 @@
 [node name="ItemContainer" type="TextureRect"]
 offset_right = 110.0
 offset_bottom = 110.0
-texture = ExtResource("1_7d14q")
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("2_p56i0")
 
 [node name="ItemTexture" type="TextureRect" parent="."]
@@ -16,3 +17,10 @@ offset_right = 333.0
 offset_bottom = 333.0
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("3_k1qqp")
+
+[node name="ItemTexture2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 333.0
+offset_bottom = 333.0
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_7d14q")
