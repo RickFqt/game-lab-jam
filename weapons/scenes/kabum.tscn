@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cn31wrfof7lj2"]
 
 [ext_resource type="Script" path="res://weapons/scripts/kabum.gd" id="1_w1at0"]
-[ext_resource type="Texture2D" uid="uid://c5rh6ow0iwnno" path="res://textures/caju.png" id="2_n3idx"]
+[ext_resource type="Texture2D" uid="uid://ce5ty6vtpocao" path="res://textures/caju.png" id="2_n3idx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7u38e"]
 radius = 200.0

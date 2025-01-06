@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvfv2cdtspxq8"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_yf6qg"]
+[ext_resource type="Texture2D" uid="uid://c0dc2at14pkhq" path="res://textures/enemy/kolbold_strong.png" id="2_7sjmh"]
+[ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_m0ghx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukv3t"]
+radius = 12.1655
+
+[sub_resource type="Animation" id="Animation_lpepp"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_x8tye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ha7iy"]
+_data = {
+"RESET": SubResource("Animation_x8tye"),
+"walk": SubResource("Animation_lpepp")
+}
+
+[node name="EnemyKoboldStrong" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_yf6qg")
+health = 20
+damage = 2
+speed = 28.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("2_7sjmh")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -10)
+shape = SubResource("CircleShape2D_ukv3t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ha7iy")
+}
+
+[node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_m0ghx")
+volume_db = -20.0

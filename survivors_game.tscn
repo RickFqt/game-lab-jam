@@ -1,11 +1,89 @@
-[gd_scene load_steps=8 format=4 uid="uid://b7npo058rrn3j"]
+[gd_scene load_steps=23 format=4 uid="uid://b7npo058rrn3j"]
 
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="1_v3u04"]
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
 [ext_resource type="TileSet" uid="uid://bv2h2f75u87mm" path="res://grass_tileset.tres" id="2_ewt36"]
+[ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_exbdq"]
 [ext_resource type="PackedScene" uid="uid://c7ge66aw855vb" path="res://pine_tree.tscn" id="2_hd8h6"]
+[ext_resource type="PackedScene" uid="uid://dxhl2r15hycxu" path="res://enemy/enemy_kobold_weak.tscn" id="3_11boq"]
+[ext_resource type="PackedScene" uid="uid://bvfv2cdtspxq8" path="res://enemy/enemy_kobold_strong.tscn" id="4_eix5v"]
 [ext_resource type="PackedScene" uid="uid://bkw84fr78vnnm" path="res://collectables/scenes/treasure_box.tscn" id="5_h6nmn"]
+[ext_resource type="PackedScene" uid="uid://d1gl57haltvld" path="res://enemy/enemy_cyclops.tscn" id="5_turpt"]
+[ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_le4mg"]
 [ext_resource type="PackedScene" uid="uid://cqjayu8xkc2jr" path="res://mato.tscn" id="6_vrs17"]
+[ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_m3mph"]
+
+[sub_resource type="Resource" id="Resource_x7l6k"]
+script = ExtResource("2_exbdq")
+time_start = 0
+time_end = 30
+enemy = ExtResource("3_11boq")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_dway5"]
+script = ExtResource("2_exbdq")
+time_start = 30
+time_end = 210
+enemy = ExtResource("3_11boq")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_sf0nw"]
+script = ExtResource("2_exbdq")
+time_start = 60
+time_end = 180
+enemy = ExtResource("4_eix5v")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_4vs3k"]
+script = ExtResource("2_exbdq")
+time_start = 180
+time_end = 210
+enemy = ExtResource("5_turpt")
+enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_07aqy"]
+script = ExtResource("2_exbdq")
+time_start = 210
+time_end = 240
+enemy = ExtResource("4_eix5v")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_lxywf"]
+script = ExtResource("2_exbdq")
+time_start = 240
+time_end = 270
+enemy = ExtResource("5_turpt")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_l525u"]
+script = ExtResource("2_exbdq")
+time_start = 240
+time_end = 240
+enemy = ExtResource("6_le4mg")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jnsp3"]
+script = ExtResource("2_exbdq")
+time_start = 270
+time_end = 300
+enemy = ExtResource("4_eix5v")
+enemy_num = 4
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_snhge"]
+script = ExtResource("2_exbdq")
+time_start = 300
+time_end = 300
+enemy = ExtResource("7_m3mph")
+enemy_num = 1
+enemy_spawn_delay = 0
 
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
@@ -16,6 +94,7 @@ point_count = 5
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xmmdq")
+spawns = Array[ExtResource("2_exbdq")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3"), SubResource("Resource_snhge")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
@@ -34,7 +113,8 @@ tile_set = ExtResource("2_ewt36")
 position = Vector2(968, 536)
 
 [node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-1232, -256)
+position = Vector2(-352.427, -81.4876)
+scale = Vector2(0.285482, 0.266624)
 curve = SubResource("Curve2D_gmud5")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
@@ -66,11 +146,9 @@ position = Vector2(1424, 232)
 [node name="SpawnMatoTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.2
-autostart = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.3
 autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
@@ -105,8 +183,8 @@ text = "Game Over"
 position = Vector2(964, 338)
 
 [node name="BossTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 180.0
-autostart = true
 
 [node name="Mato3" parent="." instance=ExtResource("6_vrs17")]
 position = Vector2(1211, 515)

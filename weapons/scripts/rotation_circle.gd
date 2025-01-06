@@ -46,9 +46,9 @@ func level_up(amount: int) -> void:
 	
 func _level_up() -> void:
 	if level == 1:
-		attributes.base_damage += 12
+		attributes.n_projectiles += 1
 	elif level == 2:
-		attributes.base_speed *= 2.0
+		attributes.base_damage += 12
 	elif level == 3:
 		attributes.base_area += 100.0
 	elif level == 4:
@@ -56,3 +56,4 @@ func _level_up() -> void:
 	elif level == 5:
 		attributes.n_projectiles += 1
 	level += 1
+	update_objects()
