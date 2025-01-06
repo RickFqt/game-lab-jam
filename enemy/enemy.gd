@@ -52,6 +52,7 @@ func spawn_exp_shard():
 	var exp_shard = preload("res://collectables/scenes/exp_shard.tscn").instantiate()
 	exp_shard.global_position = global_position
 	exp_shard.player_target = player
+	exp_shard.value = experience
 	#exp_shard.connect_to_player()
 	call_deferred("_spawn_exp_shard", exp_shard)
 

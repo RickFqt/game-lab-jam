@@ -1,33 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dt4d6pm5r0re2"]
+[gd_scene load_steps=13 format=3 uid="uid://dt4d6pm5r0re2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_112fg"]
 [ext_resource type="Texture2D" uid="uid://pptd1jo6s1tq" path="res://characters/lagarto.png" id="2_bl337"]
+[ext_resource type="AudioStream" uid="uid://vtbhvi2butqe" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwma"]
 radius = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6oa3"]
-bg_color = Color(0.152941, 0.168627, 0.188235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pstjw"]
-bg_color = Color(0.175627, 0.653709, 0.836033, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_yksxf"]
 radius = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6537"]
-bg_color = Color(0.152941, 0.168627, 0.188235, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwjfn"]
-bg_color = Color(0.623529, 0.866667, 0.317647, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhtnk"]
 atlas = ExtResource("2_bl337")
@@ -59,7 +40,27 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6oa3"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pstjw"]
+bg_color = Color(0.175627, 0.653709, 0.836033, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6537"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwjfn"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_112fg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -67,16 +68,6 @@ shape = SubResource("CircleShape2D_wrwma")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
-
-[node name="ExperienceBar" type="ProgressBar" parent="Camera2D"]
-unique_name_in_owner = true
-offset_left = -319.0
-offset_top = -181.0
-offset_right = 320.0
-offset_bottom = -169.0
-theme_override_font_sizes/font_size = 8
-theme_override_styles/background = SubResource("StyleBoxFlat_x6oa3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pstjw")
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -87,21 +78,89 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_yksxf")
 debug_color = Color(0.968692, 0.146741, 0.258411, 0.42)
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-offset_left = -29.0
-offset_top = 9.0
-offset_right = 29.0
-offset_bottom = 14.0
-theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
-value = 100.0
-show_percentage = false
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1, -10)
 sprite_frames = SubResource("SpriteFrames_cpj1c")
 animation = &"walking"
+frame = 1
+frame_progress = 0.321952
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ExperienceBar" type="ProgressBar" parent="GUILayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/background = SubResource("StyleBoxFlat_x6oa3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pstjw")
+
+[node name="HealthBar" type="ProgressBar" parent="GUILayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 896.0
+offset_top = 570.0
+offset_right = 1024.0
+offset_bottom = 580.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
+value = 100.0
+show_percentage = false
+
+[node name="CollectedWeapons" type="GridContainer" parent="GUILayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 832.0
+offset_bottom = 112.0
+columns = 6
+
+[node name="CollectedUpgrades" type="GridContainer" parent="GUILayer/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 140.0
+offset_right = 832.0
+offset_bottom = 204.0
+columns = 6
+
+[node name="LevelUp" type="Panel" parent="GUILayer/Control"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 0
+offset_left = 2472.0
+offset_top = 72.0
+offset_right = 3272.0
+offset_bottom = 1072.0
+
+[node name="lbl_LevelUP" type="Label" parent="GUILayer/Control/LevelUp"]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 50
+text = "Level Up !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUILayer/Control/LevelUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 760.0
+offset_bottom = 280.0
+
+[node name="snd_levelup" type="AudioStreamPlayer2D" parent="GUILayer/Control/LevelUp"]
+unique_name_in_owner = true
+stream = ExtResource("3_t60sq")
+volume_db = -10.0
 
 [connection signal="player_attributes_changed" from="." to="." method="_on_player_attributes_changed"]

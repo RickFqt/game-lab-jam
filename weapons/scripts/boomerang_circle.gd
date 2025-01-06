@@ -8,6 +8,8 @@ func _ready() -> void:
 	attributes.base_speed = 100
 	attributes.n_projectiles = 2
 	attributes.base_area = 30.0
+	image = preload("res://textures/enemy/kolbold_strong.png")
+	
 	%TimerBoomerang.wait_time = calculate_cooldown()
 	%TimerBoomerang.start()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b7npo058rrn3j"]
+[gd_scene load_steps=24 format=4 uid="uid://b7npo058rrn3j"]
 
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="1_v3u04"]
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_le4mg"]
 [ext_resource type="PackedScene" uid="uid://cqjayu8xkc2jr" path="res://mato.tscn" id="6_vrs17"]
 [ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_m3mph"]
+[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
 script = ExtResource("2_exbdq")
@@ -96,8 +97,17 @@ y_sort_enabled = true
 script = ExtResource("1_xmmdq")
 spawns = Array[ExtResource("2_exbdq")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3"), SubResource("Resource_snhge")])
 
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -980
+texture_filter = 2
+texture_repeat = 2
+texture = ExtResource("8_c38c0")
+region_enabled = true
+region_rect = Rect2(-4000, -4000, 8000, 8000)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_right = 1920.0
@@ -180,7 +190,7 @@ theme_override_font_sizes/font_size = 161
 text = "Game Over"
 
 [node name="TreasureBox" parent="." instance=ExtResource("5_h6nmn")]
-position = Vector2(964, 338)
+position = Vector2(967, 494)
 
 [node name="BossTimer" type="Timer" parent="."]
 unique_name_in_owner = true

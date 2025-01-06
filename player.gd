@@ -12,6 +12,14 @@ var items_inventory : Array = []
 
 var weapon_scenes: Array[PackedScene]
 
+# GUI
+#@onready var lblLevel = get_node("%lbl_level")
+@onready var levelPanel = get_node("%LevelUp")
+@onready var upgradeOptions = get_node("%UpgradeOptions")
+@onready var itemOptions = preload("res://Utility/item_option.tscn")
+@onready var sndLevelUp = get_node("%snd_levelup")
+@onready var itemContainer = preload("res://player/GUI/item_container.tscn")
+
 func _ready():
 	%HealthBar.max_value = player_attributes.max_health
 	%ExperienceBar.max_value = experience_needed
@@ -68,11 +76,18 @@ func add_weapon(weapon_scene: PackedScene, weapon_name: String) -> void:
 	var new_weapon = weapon_scene.instantiate()
 	weapons_inventory[weapon_name] = new_weapon
 	call_deferred("_add_weapon", new_weapon)
+	adjust_gui_collection(new_weapon)
 
 func _add_weapon(weapon: Weapon):
 	add_child(weapon)
 
 func upgrade_weapons_inventory(weapon_scene: PackedScene) -> void:
+	var option_children = upgradeOptions.get_children()
+	for i in option_children:
+		i.queue_free()
+	levelPanel.visible = false
+	levelPanel.position = Vector2(2472,72)
+	get_tree().paused = false
 	var weapon_name = weapon_scene.resource_path.get_file().get_basename()
 	
 	if weapons_inventory.has(weapon_name):
@@ -103,6 +118,22 @@ func add_health(amount: int) -> void:
 	%HealthBar.value = player_attributes.health
 
 func level_up():
+	sndLevelUp.play()
+	#lblLevel.text = str("Level: ",experience_level)
+	var tween = levelPanel.create_tween()
+	tween.tween_property(levelPanel,"position",Vector2(560,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	levelPanel.visible = true
+	var options = 0
+	var optionsmax = 3
+	while options < optionsmax:
+		var option_choice = itemOptions.instantiate()
+		#option_choice.item = get_random_item()
+		upgradeOptions.add_child(option_choice)
+		options += 1
+	get_tree().paused = true
+	
+	#sndLevelUp.play()
 	player_attributes.level += 1
 	experience -= experience_needed
 	experience_needed += int(experience_needed * 0.7)
@@ -121,8 +152,17 @@ func draw_weapon_or_item():
 	
 	if weapons_pool.size() > 0:
 		var chosen_weapon = weapons_pool[randi() % weapons_pool.size()]
-		upgrade_weapons_inventory(chosen_weapon)
+		upgrade_weapons_inventory(chosen_weapon)	
+
+func adjust_gui_collection(item):
 	
+	await item.ready
+	
+	var new_weapon_container = itemContainer.instantiate()
+	new_weapon_container.item = item
+	new_weapon_container.icon_path = item.image
+	new_weapon_container.update_texture()
+	%CollectedWeapons.add_child(new_weapon_container)
 
 func _on_player_attributes_changed() -> void:
 	for weapon in weapons_inventory.values():

@@ -1,9 +1,12 @@
 extends Weapon
 
+
 func _ready() -> void:
 	attributes.base_cooldown = 0.3
 	attributes.base_damage = 10
 	attributes.base_speed = 500
+	image = preload("res://textures/enemy/cyclops.png")
+	
 	
 
 func _physics_process(_delta: float) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1sf4qc5jh7i2"]
 
-[ext_resource type="Texture2D" uid="uid://btbxea1f3vwot" path="res://characters/slime/slime_body_hurt.png" id="1_88iee"]
 [ext_resource type="Script" path="res://weapons/scripts/rotation_circle_object.gd" id="1_ecdkh"]
+[ext_resource type="Texture2D" uid="uid://c8yg0yglkrmv6" path="res://textures/weapons/casco_tartaruga.png" id="2_pcted"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kha8f"]
 
@@ -11,9 +11,9 @@ collision_mask = 7
 script = ExtResource("1_ecdkh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.98023e-08, 0)
-scale = Vector2(0.185185, 0.2)
-texture = ExtResource("1_88iee")
+position = Vector2(-2.98023e-08, -1)
+scale = Vector2(1, 1.14286)
+texture = ExtResource("2_pcted")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kha8f")
