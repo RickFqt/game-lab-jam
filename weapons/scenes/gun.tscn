@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://c248dt6ocf0t2"]
+[gd_scene load_steps=10 format=3 uid="uid://c248dt6ocf0t2"]
 
 [ext_resource type="Script" path="res://weapons/scripts/gun.gd" id="1_716xo"]
+[ext_resource type="Texture2D" uid="uid://co7gux0n4r5hu" path="res://textures/weapons/spritesheet_hummingbird.png" id="2_4u2ub"]
 [ext_resource type="Texture2D" uid="uid://cswb5do8rrj7q" path="res://pistol/pistol.png" id="2_hlf6e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4jj76"]
 radius = 382.413
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eorgc"]
+atlas = ExtResource("2_4u2ub")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enng3"]
+atlas = ExtResource("2_4u2ub")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2v0j"]
+atlas = ExtResource("2_4u2ub")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqic0"]
+atlas = ExtResource("2_4u2ub")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3lf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eorgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enng3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2v0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqic0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Gun" type="Area2D"]
 scale = Vector2(0.4, 0.4)
@@ -17,13 +54,23 @@ shape = SubResource("CircleShape2D_4jj76")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponPivot"]
+unique_name_in_owner = true
+position = Vector2(88.375, -28.0625)
+scale = Vector2(3.32812, 2.11719)
+sprite_frames = SubResource("SpriteFrames_p3lf3")
+frame_progress = 0.117103
+flip_h = true
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
+unique_name_in_owner = true
+position = Vector2(8.18606, -0.901409)
+scale = Vector2(0.744187, 0.901408)
+
 [node name="Pistol" type="Sprite2D" parent="WeaponPivot"]
+visible = false
 position = Vector2(95, -8)
 texture = ExtResource("2_hlf6e")
-
-[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/Pistol"]
-unique_name_in_owner = true
-position = Vector2(26, -13)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

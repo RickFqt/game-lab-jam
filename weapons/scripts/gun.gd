@@ -13,6 +13,7 @@ func _ready() -> void:
 		"Descricao gun",
 		"Descricao gun"]
 	weapon_name = "Beija-flor"
+	%AnimatedSprite2D.play("default")
 	
 	
 

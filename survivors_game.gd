@@ -17,6 +17,7 @@ func _ready() -> void:
 	%SpawnTimer.start()
 	%BossTimer.start()
 	%SpawnMatoTimer.start()
+	
 
 #func _process(delta: float) -> void:
 	#time_since_last_wave += delta
@@ -65,6 +66,7 @@ func _on_timer_timeout() -> void:
 
 func _on_player_health_depleted() -> void:
 	%GameOver.visible = true
+	$AudioManager.para_tudo()
 	get_tree().paused = true
 
 

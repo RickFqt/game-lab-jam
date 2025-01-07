@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciyvtv4g1twwg"]
+[gd_scene load_steps=5 format=3 uid="uid://ciyvtv4g1twwg"]
 
-[ext_resource type="Texture2D" uid="uid://dhapxq8y8ow57" path="res://characters/happy_boo/square_lower_leg.png" id="1_6lpv5"]
 [ext_resource type="Script" path="res://collectables/scripts/exp_shard.gd" id="1_7oere"]
+[ext_resource type="Texture2D" uid="uid://v7t5tomeq20e" path="res://textures/Gem_green.png" id="2_y1plh"]
+[ext_resource type="AudioStream" uid="uid://d8tup3xts5hj" path="res://audio/sfx/collectgem.mp3" id="3_2b5pe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4hxf0"]
 radius = 100.24
@@ -12,13 +13,19 @@ scale = Vector2(0.4, 0.4)
 script = ExtResource("1_7oere")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.8, 0.176471, 0, 1)
+unique_name_in_owner = true
 position = Vector2(0, 3.8147e-06)
 scale = Vector2(0.91875, 1.17383)
-texture = ExtResource("1_6lpv5")
+texture = ExtResource("2_y1plh")
 
 [node name="CollectArea" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_4hxf0")
 
+[node name="snd_pickup" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_2b5pe")
+volume_db = -10.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="snd_pickup" to="." method="_on_snd_pickup_finished"]

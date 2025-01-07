@@ -5,7 +5,7 @@ signal player_attributes_changed
 
 var player_attributes : PlayerAttributes = PlayerAttributes.new()
 var experience: int = 0
-var experience_needed: int = 100
+var experience_needed: int = 10
 
 var weapons_inventory : Dictionary = {}
 var items_inventory : Array = []
@@ -13,29 +13,17 @@ var items_inventory : Array = []
 var weapon_scenes: Array[PackedScene]
 
 
-
-#var weapons_image_path : Dictionary = {
-	#"gun": ["res://textures/GUI/weapons/1_back.png", 
-			#"Beija flor"],
-	#"kabum": ["res://textures/GUI/weapons/50_back.png",
-			#"Onça quer dizer tigre"],
-	#"rotation_circle": ["res://textures/GUI/weapons/2_back.png",
-			#"Tartaluga"],
-	#"boomerang_circle": ["res://textures/GUI/weapons/20_back.png",
-			#"Mico leao do rado"]
-#}
-
 var weapons_image_path : Dictionary = {
-	"gun": ["res://textures/enemy/cyclops.png", 
+	"gun": ["res://textures/GUI/weapons/1_back.png", 
 			"Atira um projétil no inimigo mais próximo",
 			"Beija-flor"],
-	"kabum": ["res://textures/enemy/juggernaut.png",
+	"kabum": ["res://textures/GUI/weapons/50_back.png",
 			"Explode tudo que tem na tela.",
 			"Onça"],
-	"rotation_circle": ["res://textures/enemy/kolbold_weak.png",
+	"rotation_circle": ["res://textures/GUI/weapons/2_back.png",
 			"Invoca uma tartaruga que orbita ao redor do player.",
 			"Tartaruga"],
-	"boomerang_circle": ["res://textures/enemy/kolbold_strong.png",
+	"boomerang_circle": ["res://textures/GUI/weapons/20_back.png",
 			"Atira bananas-bumerangue.",
 			"Mico"]
 }
@@ -54,7 +42,7 @@ func _ready():
 	%ExperienceBar.value = 0
 	%AnimatedSprite2D.play("walking")
 	load_weapon_scenes()
-	#level_up()
+	level_up()
 
 func load_weapon_scenes():
 	var weapons_dir = DirAccess.open("res://weapons/scenes")
@@ -167,7 +155,8 @@ func level_up():
 	
 	player_attributes.level += 1
 	experience -= experience_needed
-	experience_needed += int(experience_needed * 0.7)
+	experience = max(experience, 0)
+	experience_needed += int(experience_needed * 0.6)
 	%ExperienceBar.max_value = experience_needed
 	#draw_weapon_or_item()
 	player_attributes_changed.emit()

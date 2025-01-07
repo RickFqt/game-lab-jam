@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn31wrfof7lj2"]
+[gd_scene load_steps=5 format=3 uid="uid://cn31wrfof7lj2"]
 
 [ext_resource type="Script" path="res://weapons/scripts/kabum.gd" id="1_w1at0"]
-[ext_resource type="Texture2D" uid="uid://drjdqbymyucep" path="res://textures/caju.png" id="2_n3idx"]
+[ext_resource type="Texture2D" uid="uid://cdkrs67od40c8" path="res://textures/weapons/pata_onca_v2.png" id="2_nggj4"]
+[ext_resource type="AudioStream" uid="uid://b04n34ermth5f" path="res://audio/sfx/Rawr.mp3" id="3_a8u6y"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7u38e"]
-radius = 200.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifh1p"]
+size = Vector2(600, 340)
 
 [node name="Kabum" type="Area2D"]
 collision_layer = 0
@@ -18,14 +19,18 @@ autostart = true
 
 [node name="DeathArea" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-shape = SubResource("CircleShape2D_7u38e")
+shape = SubResource("RectangleShape2D_ifh1p")
 
 [node name="Sprite2D" type="Sprite2D" parent="DeathArea"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.431373)
 position = Vector2(-1.52588e-05, 0)
-scale = Vector2(1.95508, 1)
-texture = ExtResource("2_n3idx")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_nggj4")
+
+[node name="snd_rawr" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_a8u6y")
 
 [connection signal="player_attributes_changed" from="." to="." method="_on_player_attributes_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

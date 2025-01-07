@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2n2hkml1olkv"]
+
+[ext_resource type="AudioStream" uid="uid://ct8w8i7v4djcb" path="res://audio/music/music1_inicio.mp3" id="1_ald1k"]
+[ext_resource type="Script" path="res://audio/snd_music.gd" id="1_esh2j"]
+[ext_resource type="AudioStream" uid="uid://ba85rwso73rt5" path="res://audio/music/musica1_meio.mp3" id="2_60t8j"]
+[ext_resource type="AudioStream" uid="uid://bxkrr7xl3rt4i" path="res://audio/music/music1_final.mp3" id="3_gqpnl"]
+
+[node name="AudioManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_esh2j")
+
+[node name="musica_inicio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ald1k")
+volume_db = 5.0
+autoplay = true
+
+[node name="musica_meio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_60t8j")
+volume_db = 5.0
+
+[node name="musica_final" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gqpnl")
+volume_db = 5.0
+
+[connection signal="finished" from="musica_inicio" to="." method="_on_musica_inicio_finished"]
+[connection signal="finished" from="musica_meio" to="." method="_on_musica_meio_finished"]
+[connection signal="finished" from="musica_final" to="." method="_on_musica_final_finished"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6bpdeyx7ew0t"]
+[gd_scene load_steps=5 format=3 uid="uid://c6bpdeyx7ew0t"]
 
 [ext_resource type="Script" path="res://collectables/scripts/caju.gd" id="1_2c3qo"]
-[ext_resource type="Texture2D" uid="uid://c5rh6ow0iwnno" path="res://textures/caju.png" id="1_s6cyu"]
+[ext_resource type="Texture2D" uid="uid://ce5ty6vtpocao" path="res://textures/caju.png" id="1_s6cyu"]
+[ext_resource type="AudioStream" uid="uid://8euapstuwoax" path="res://audio/sfx/crunch.mp3" id="3_006ng"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuitm"]
 radius = 100.24
@@ -18,4 +19,9 @@ texture = ExtResource("1_s6cyu")
 [node name="CollectArea" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yuitm")
 
+[node name="snd_crunch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_006ng")
+volume_db = -15.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="snd_crunch" to="." method="_on_snd_crunch_finished"]
