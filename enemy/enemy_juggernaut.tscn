@@ -7,6 +7,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_61kkh"]
 radius = 15.5081
 
+[sub_resource type="Animation" id="Animation_6633q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_wsp5p"]
 resource_name = "walk"
 length = 0.6
@@ -24,21 +39,6 @@ tracks/0/keys = {
 "values": [0, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_6633q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3fgi7"]
 _data = {
 "RESET": SubResource("Animation_6633q"),
@@ -50,7 +50,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_k6j8e")
 health = 300
-damage = 8
+damage = 25
 speed = 40.0
 experience = 100
 

@@ -2,26 +2,42 @@ extends Weapon
 
 
 func _ready() -> void:
-	attributes.base_cooldown = 0.3
+	attributes.base_cooldown = 2
 	attributes.base_damage = 10
-	attributes.base_speed = 500
+	attributes.base_speed = 300
 	image = preload("res://textures/GUI/weapons/1_back.png")
 	descriptions= [
-		"Descricao gun",
-		"Descricao gun",
-		"Descricao gun",
-		"Descricao gun",
-		"Descricao gun"]
+		"Diminui o intervalo entre tiros em 33%.",
+		"Aumenta o dano base dos projéteis em 10.",
+		"Diminui o intervalo entre tiros em 33%.",
+		"Aumenta o dano base dos projéteis em 10.",
+		"Diminui o intervalo entre tiros em 50%."]
 	weapon_name = "Beija-flor"
 	%AnimatedSprite2D.play("default")
+	%Timer.wait_time = calculate_cooldown()
+	%Timer.start()
 	
 	
 
 func _physics_process(_delta: float) -> void:
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if Input.is_action_pressed("move_left"):
+		%AnimatedSprite2D.scale.x = abs(%AnimatedSprite2D.scale.x)
+	elif Input.is_action_pressed("move_right"):
+		%AnimatedSprite2D.scale.x = - abs(%AnimatedSprite2D.scale.x)
+
 	var enemies_in_range = get_overlapping_bodies()
+	var min_dist = 0x3f3f3f3f
+	var target_enemy = null
 	if enemies_in_range.size() > 0:
-		var target_enemy = enemies_in_range.front()
-		look_at(target_enemy.global_position)
+		for enemy in enemies_in_range:
+			var dist = enemy.global_position.distance_to(global_position)
+			if dist < min_dist:
+				min_dist = dist
+				target_enemy = enemy
+	
+	if target_enemy != null:
+		$WeaponPivot.look_at(target_enemy.global_position)
 
 func shoot():
 	const BULLET = preload("res://weapons/aux_scenes/bullet.tscn")
@@ -43,13 +59,13 @@ func level_up(amount: int) -> void:
 	
 func _level_up() -> void:
 	if level == 1:
-		attributes.base_damage += 12
+		attributes.base_cooldown /= 1.5
 	elif level == 2:
-		attributes.base_cooldown /= 2.0
+		attributes.base_damage += 10
 	elif level == 3:
-		attributes.base_damage += 15
+		attributes.base_cooldown /= 1.5
 	elif level == 4:
-		attributes.base_cooldown /= 2.0
+		attributes.base_damage += 15
 	elif level == 5:
-		attributes.base_speed *= 1.5
+		attributes.base_cooldown /= 2.0
 	level += 1

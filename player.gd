@@ -18,14 +18,17 @@ var weapons_image_path : Dictionary = {
 			"Atira um projétil no inimigo mais próximo",
 			"Beija-flor"],
 	"kabum": ["res://textures/GUI/weapons/50_back.png",
-			"Explode tudo que tem na tela.",
+			"A cada 2 minutos, RASGA A TELA.",
 			"Onça"],
 	"rotation_circle": ["res://textures/GUI/weapons/2_back.png",
 			"Invoca uma tartaruga que orbita ao redor do player.",
 			"Tartaruga"],
 	"boomerang_circle": ["res://textures/GUI/weapons/20_back.png",
 			"Atira bananas-bumerangue.",
-			"Mico"]
+			"Mico"],
+	"araraCircle": ["res://textures/GUI/weapons/10_back.png",
+			"Araras voam sobre seus inimigos.",
+			"Arara"],
 }
 
 # GUI

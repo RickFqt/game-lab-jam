@@ -178,6 +178,9 @@ text = "Game Over"
 unique_name_in_owner = true
 wait_time = 180.0
 
+[node name="EnemyKoboldStrong" parent="." instance=ExtResource("4_eix5v")]
+position = Vector2(758, 506)
+
 [node name="Mato3" parent="." instance=ExtResource("6_vrs17")]
 position = Vector2(1211, 515)
 

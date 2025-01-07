@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var player = get_node("/root/Game/Player")
 
 func _ready() -> void:
+	damage *= 2
 	$AnimationPlayer.play("walk")
 
 func change_to_boss() -> void:

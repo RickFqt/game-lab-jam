@@ -8,11 +8,11 @@ func _ready() -> void:
 	%Timer.wait_time = 0.01
 	image = preload("res://textures/GUI/weapons/50_back.png")
 	descriptions= [
-		"Descricao kabum",
-		"Descricao kabum",
-		"Descricao kabum",
-		"Descricao kabum",
-		"Descricao kabum"]
+		"Diminui em 10 segundos o tempo de espera.",
+		"Diminui em 15 segundos o tempo de espera.",
+		"Diminui em 15 segundos o tempo de espera.",
+		"Diminui em 20 segundos o tempo de espera.",
+		"Diminui em 30 segundos o tempo de espera."]
 	weapon_name = "Onça"
 	
 

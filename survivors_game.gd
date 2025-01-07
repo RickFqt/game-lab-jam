@@ -3,7 +3,7 @@ extends Node2D
 #const WAVE_DURATION : float = 30.0
 
 #var boss_spawn_interval: float = 0.5 # Intervalo entre spawns de bosses
-var spawn_mato_interval: float = 5.0  # Intervalo entre spawns de matos
+var spawn_mato_interval: float = 1.0  # Intervalo entre spawns de matos
 
 #var current_wave: int = 0  # Onda atual
 #var time_since_last_wave: float = 0.0

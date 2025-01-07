@@ -2,12 +2,19 @@ extends Weapon
 
 
 func _ready() -> void:
-	attributes.base_cooldown = 1.2
-	attributes.base_damage = 15
+	attributes.base_cooldown = 2
+	attributes.base_damage = 2
 	attributes.base_speed = 100
-	attributes.n_projectiles = 2
+	attributes.n_projectiles = 1
 	attributes.base_area = 30.0
-	
+	image = preload("res://textures/GUI/weapons/10_back.png")
+	descriptions= [
+		"Descricao arara",
+		"Descricao arara",
+		"Descricao arara",
+		"Descricao arara",
+		"Descricao arara"]
+	weapon_name = "Arara"
 	%TimerArara.wait_time = calculate_cooldown()
 	%TimerArara.start()
 
