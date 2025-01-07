@@ -5,7 +5,7 @@ func _ready() -> void:
 	attributes.base_cooldown = 0.3
 	attributes.base_damage = 10
 	attributes.base_speed = 500
-	image = preload("res://textures/enemy/cyclops.png")
+	image = preload("res://textures/GUI/weapons/1_back.png")
 	
 	
 

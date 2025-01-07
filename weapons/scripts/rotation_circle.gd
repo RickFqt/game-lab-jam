@@ -11,7 +11,7 @@ func _ready() -> void:
 	attributes.base_speed = PI
 	attributes.n_projectiles = 1
 	attributes.base_area = 40.0
-	image = preload("res://textures/enemy/kolbold_weak.png")
+	image = preload("res://textures/GUI/weapons/2_back.png")
 	
 	update_objects()
 
