@@ -6,7 +6,7 @@ func _ready() -> void:
 	attributes.base_damage = 1000
 	attributes.base_area = 200
 	%Timer.wait_time = 0.01
-	image = preload("res://textures/enemy/juggernaut.png")
+	image = preload("res://textures/GUI/weapons/50_back.png")
 	descriptions= [
 		"Descricao kabum",
 		"Descricao kabum",
