@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bywfa4ha3kof3"]
+
+[ext_resource type="Script" path="res://weapons/scripts/arara.gd" id="1_fbogk"]
+[ext_resource type="Texture2D" uid="uid://byjurkj2q5w6a" path="res://textures/araraUp.png" id="2_k2jfx"]
+[ext_resource type="Texture2D" uid="uid://bptbslhe4faqw" path="res://textures/araraMIddle.png" id="3_aotlc"]
+[ext_resource type="Texture2D" uid="uid://cuq1prtrejefl" path="res://textures/araraDown.png" id="4_gk0gi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72vlg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k2jfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aotlc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gk0gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aotlc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfjs8"]
+radius = 7.5
+
+[node name="Arara" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_fbogk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_72vlg")
+frame_progress = 0.0142018
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_jfjs8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
