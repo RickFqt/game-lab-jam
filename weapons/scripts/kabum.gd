@@ -7,7 +7,13 @@ func _ready() -> void:
 	attributes.base_area = 200
 	%Timer.wait_time = 0.01
 	image = preload("res://textures/enemy/juggernaut.png")
-	
+	descriptions= [
+		"Descricao kabum",
+		"Descricao kabum",
+		"Descricao kabum",
+		"Descricao kabum",
+		"Descricao kabum"]
+	weapon_name = "Onça"
 	
 
 func _physics_process(_delta: float) -> void:

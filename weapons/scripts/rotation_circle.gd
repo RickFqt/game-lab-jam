@@ -12,7 +12,13 @@ func _ready() -> void:
 	attributes.n_projectiles = 1
 	attributes.base_area = 40.0
 	image = preload("res://textures/enemy/kolbold_weak.png")
-	
+	descriptions= [
+		"Descricao rotation circle",
+		"Descricao rotation circle",
+		"Descricao rotation circle",
+		"Descricao rotation circle",
+		"Descricao rotation circle"]
+	weapon_name = "Tartaruga"
 	update_objects()
 
 func update_objects():

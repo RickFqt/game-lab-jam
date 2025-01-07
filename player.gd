@@ -12,6 +12,34 @@ var items_inventory : Array = []
 
 var weapon_scenes: Array[PackedScene]
 
+
+
+#var weapons_image_path : Dictionary = {
+	#"gun": ["res://textures/GUI/weapons/1_back.png", 
+			#"Beija flor"],
+	#"kabum": ["res://textures/GUI/weapons/50_back.png",
+			#"Onça quer dizer tigre"],
+	#"rotation_circle": ["res://textures/GUI/weapons/2_back.png",
+			#"Tartaluga"],
+	#"boomerang_circle": ["res://textures/GUI/weapons/20_back.png",
+			#"Mico leao do rado"]
+#}
+
+var weapons_image_path : Dictionary = {
+	"gun": ["res://textures/enemy/cyclops.png", 
+			"Atira um projétil no inimigo mais próximo",
+			"Beija-flor"],
+	"kabum": ["res://textures/enemy/juggernaut.png",
+			"Explode tudo que tem na tela.",
+			"Onça"],
+	"rotation_circle": ["res://textures/enemy/kolbold_weak.png",
+			"Invoca uma tartaruga que orbita ao redor do player.",
+			"Tartaruga"],
+	"boomerang_circle": ["res://textures/enemy/kolbold_strong.png",
+			"Atira bananas-bumerangue.",
+			"Mico"]
+}
+
 # GUI
 #@onready var lblLevel = get_node("%lbl_level")
 @onready var levelPanel = get_node("%LevelUp")
@@ -26,6 +54,7 @@ func _ready():
 	%ExperienceBar.value = 0
 	%AnimatedSprite2D.play("walking")
 	load_weapon_scenes()
+	#level_up()
 
 func load_weapon_scenes():
 	var weapons_dir = DirAccess.open("res://weapons/scenes")
@@ -93,17 +122,14 @@ func upgrade_weapons_inventory(weapon_scene: PackedScene) -> void:
 	
 	var weapon_name = weapon_scene.resource_path.get_file().get_basename()
 	
-	print("nome do weapon: " + weapon_name)
 	if weapons_inventory.has(weapon_name):
 		weapons_inventory[weapon_name].level_up(1)
 		return
-	print("nao tem o weapon mano")
 	add_weapon(weapon_scene)
 
 func has_weapon(weapon_scene: PackedScene) -> bool:
 	
 	for weapon in weapons_inventory:
-		print("nome do weapon no inventario: " + weapon.name)
 		if weapon.name == weapon_scene.resource_name:
 			return true
 	return false
@@ -136,6 +162,7 @@ func level_up():
 			var option_choice = itemOptions.instantiate()
 			option_choice.item_scene = weapon_scene
 			upgradeOptions.add_child(option_choice)
+				
 		get_tree().paused = true
 	
 	player_attributes.level += 1
@@ -145,7 +172,7 @@ func level_up():
 	#draw_weapon_or_item()
 	player_attributes_changed.emit()
 
-func draw_weapon_or_item(amount : int = 3) -> Array[PackedScene]:
+func draw_weapon_or_item(amount : int = 3):
 	var weapons_pool: Array[PackedScene] = []
 	#var items_pool
 		
@@ -155,7 +182,7 @@ func draw_weapon_or_item(amount : int = 3) -> Array[PackedScene]:
 		weapons_pool.append(weapon)
 	
 	weapons_pool.shuffle()
-	var chosen_weapons : Array[PackedScene] = []
+	var chosen_weapons = []
 	var pool_size = weapons_pool.size()
 	for i in amount:
 		if i < pool_size:

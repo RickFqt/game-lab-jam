@@ -9,7 +9,13 @@ func _ready() -> void:
 	attributes.n_projectiles = 2
 	attributes.base_area = 30.0
 	image = preload("res://textures/enemy/kolbold_strong.png")
-	
+	descriptions= [
+		"Descricao boomerang",
+		"Descricao boomerang",
+		"Descricao boomerang",
+		"Descricao boomerang",
+		"Descricao boomerang"]
+	weapon_name = "Mico"
 	%TimerBoomerang.wait_time = calculate_cooldown()
 	%TimerBoomerang.start()
 

@@ -48,9 +48,9 @@ autowrap_mode = 3
 
 [node name="lbl_level" type="Label" parent="."]
 layout_mode = 0
-offset_left = 400.0
+offset_left = 526.0
 offset_top = 8.0
-offset_right = 573.0
+offset_right = 699.0
 offset_bottom = 75.0
 theme_override_font_sizes/font_size = 48
 text = "Level: 1"

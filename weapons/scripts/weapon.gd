@@ -7,6 +7,8 @@ var attributes: Attributes = Attributes.new()
 var player_attributes: PlayerAttributes = PlayerAttributes.new()
 var level: int = 1
 var image = preload("res://textures/enemy/giant_amoeba_new.png")
+var descriptions : Array = []
+var weapon_name : String = "Default"
 
 func level_up(_amount : int) -> void:
 	pass

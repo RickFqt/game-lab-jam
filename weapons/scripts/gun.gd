@@ -6,6 +6,13 @@ func _ready() -> void:
 	attributes.base_damage = 10
 	attributes.base_speed = 500
 	image = preload("res://textures/enemy/cyclops.png")
+	descriptions= [
+		"Descricao gun",
+		"Descricao gun",
+		"Descricao gun",
+		"Descricao gun",
+		"Descricao gun"]
+	weapon_name = "Beija-flor"
 	
 	
 
