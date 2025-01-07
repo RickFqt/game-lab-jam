@@ -89,6 +89,10 @@ func _physics_process(delta: float) -> void:
 		player_attributes.health -= damage_taken * delta
 		%HealthBar.value = player_attributes.health
 		player_attributes_changed.emit()
+		
+		# Reproduzir animação de dano
+		%DamageAnimation.play("DamageFlash")
+		
 		if player_attributes.health <= 0.0:
 			health_depleted.emit()
 

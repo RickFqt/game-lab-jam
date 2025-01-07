@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dt4d6pm5r0re2"]
+[gd_scene load_steps=16 format=3 uid="uid://dt4d6pm5r0re2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_112fg"]
-[ext_resource type="Texture2D" uid="uid://pptd1jo6s1tq" path="res://characters/lagarto.png" id="2_bl337"]
-[ext_resource type="AudioStream" uid="uid://vtbhvi2butqe" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
+[ext_resource type="Texture2D" uid="uid://b2ent6mf1y7w7" path="res://characters/lagarto.png" id="2_bl337"]
+[ext_resource type="AudioStream" uid="uid://cf4tar2m6ql4j" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwma"]
 radius = 5.0
@@ -59,6 +59,43 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_p6man"]
+resource_name = "DamageFlash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7u1rh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2avv"]
+_data = {
+"DamageFlash": SubResource("Animation_p6man"),
+"RESET": SubResource("Animation_7u1rh")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_112fg")
@@ -162,5 +199,11 @@ offset_bottom = 280.0
 unique_name_in_owner = true
 stream = ExtResource("3_t60sq")
 volume_db = -10.0
+
+[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_g2avv")
+}
 
 [connection signal="player_attributes_changed" from="." to="." method="_on_player_attributes_changed"]
