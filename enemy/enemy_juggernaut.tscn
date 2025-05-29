@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dx62af6jucfs"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_k6j8e"]
-[ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_c6nto"]
-[ext_resource type="Texture2D" uid="uid://dtf4eg163qrcq" path="res://textures/enemy/juggernaut.png" id="2_s0d8n"]
+[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_c6nto"]
+[ext_resource type="Texture2D" uid="uid://benn4q0wjhkv8" path="res://textures/enemy/juggernaut.png" id="2_s0d8n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61kkh"]
 radius = 15.5081

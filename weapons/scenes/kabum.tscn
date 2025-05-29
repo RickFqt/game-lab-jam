@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn31wrfof7lj2"]
 
 [ext_resource type="Script" path="res://weapons/scripts/kabum.gd" id="1_qxqjy"]
-[ext_resource type="Texture2D" uid="uid://cdkrs67od40c8" path="res://textures/weapons/pata_onca_v2.png" id="2_4i6rg"]
-[ext_resource type="AudioStream" uid="uid://b04n34ermth5f" path="res://audio/sfx/Rawr.mp3" id="3_or77e"]
+[ext_resource type="Texture2D" uid="uid://jhfmbep64qar" path="res://textures/weapons/pata_onca_v2.png" id="2_4i6rg"]
+[ext_resource type="AudioStream" uid="uid://bl5nr1wi7xsk8" path="res://audio/sfx/Rawr.mp3" id="3_or77e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifh1p"]
 size = Vector2(900, 600)

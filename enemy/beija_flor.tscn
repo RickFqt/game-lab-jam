@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvfv2cdtspxq8"]
+[gd_scene load_steps=6 format=3 uid="uid://dqqn5bl0ipivk"]
 
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_yf6qg"]
-[ext_resource type="Texture2D" uid="uid://pja1vfdsa32a" path="res://textures/enemy/kolbold_strong.png" id="2_7sjmh"]
-[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_m0ghx"]
+[ext_resource type="Texture2D" uid="uid://cb8jnyume20mh" path="res://textures/weapons/spritesheet_hummingbird.png" id="1_ydeab"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ukv3t"]
-radius = 12.1655
+[sub_resource type="CircleShape2D" id="CircleShape2D_3if2b"]
 
 [sub_resource type="Animation" id="Animation_x8tye"]
 length = 0.001
@@ -45,28 +42,21 @@ _data = {
 "walk": SubResource("Animation_lpepp")
 }
 
-[node name="EnemyKoboldStrong" type="CharacterBody2D"]
+[node name="BeijaFlor" type="CharacterBody2D"]
+scale = Vector2(8, 8)
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_yf6qg")
-health = 20
-damage = 8
-speed = 28.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
-texture = ExtResource("2_7sjmh")
-hframes = 2
+position = Vector2(0, -1)
+texture = ExtResource("1_ydeab")
+hframes = 4
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -10)
-shape = SubResource("CircleShape2D_ukv3t")
+shape = SubResource("CircleShape2D_3if2b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ha7iy")
 }
-
-[node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_m0ghx")
-volume_db = -20.0

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_le4mg"]
 [ext_resource type="PackedScene" uid="uid://cqjayu8xkc2jr" path="res://mato.tscn" id="6_vrs17"]
 [ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_m3mph"]
-[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
+[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
 [ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_ljdnk"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
@@ -176,10 +176,9 @@ text = "Game Over"
 
 [node name="BossTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 180.0
-
-[node name="EnemyKoboldStrong" parent="." instance=ExtResource("4_eix5v")]
-position = Vector2(758, 506)
+wait_time = 500.0
+one_shot = true
+autostart = true
 
 [node name="Mato3" parent="." instance=ExtResource("6_vrs17")]
 position = Vector2(1211, 515)

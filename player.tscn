@@ -1,8 +1,22 @@
 [gd_scene load_steps=16 format=3 uid="uid://dt4d6pm5r0re2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_112fg"]
-[ext_resource type="Texture2D" uid="uid://b2ent6mf1y7w7" path="res://characters/lagarto.png" id="2_bl337"]
-[ext_resource type="AudioStream" uid="uid://cf4tar2m6ql4j" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
+[ext_resource type="Texture2D" uid="uid://d1oxjcqew72lb" path="res://characters/lagarto.png" id="2_bl337"]
+[ext_resource type="AudioStream" uid="uid://c27unwwvh2d2u" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6537"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwjfn"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwma"]
 radius = 5.0
@@ -46,20 +60,6 @@ bg_color = Color(0.152941, 0.168627, 0.188235, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pstjw"]
 bg_color = Color(0.175627, 0.653709, 0.836033, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6537"]
-bg_color = Color(0.152941, 0.168627, 0.188235, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwjfn"]
-bg_color = Color(0.623529, 0.866667, 0.317647, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="Animation" id="Animation_p6man"]
 resource_name = "DamageFlash"
 length = 0.2
@@ -98,7 +98,19 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 9
 script = ExtResource("1_112fg")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
+value = 100.0
+show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wrwma")
@@ -133,24 +145,11 @@ offset_bottom = 1080.0
 
 [node name="ExperienceBar" type="ProgressBar" parent="GUILayer/Control"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 36.0
 theme_override_font_sizes/font_size = 24
 theme_override_styles/background = SubResource("StyleBoxFlat_x6oa3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pstjw")
-
-[node name="HealthBar" type="ProgressBar" parent="GUILayer/Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 896.0
-offset_top = 570.0
-offset_right = 1024.0
-offset_bottom = 580.0
-theme_override_styles/background = SubResource("StyleBoxFlat_v6537")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cwjfn")
-value = 100.0
-show_percentage = false
 
 [node name="CollectedWeapons" type="GridContainer" parent="GUILayer/Control"]
 unique_name_in_owner = true

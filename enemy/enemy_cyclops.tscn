@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1gl57haltvld"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_b1uny"]
-[ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_bt7ic"]
-[ext_resource type="Texture2D" uid="uid://b0ju887kv0xpc" path="res://textures/enemy/cyclops.png" id="2_dutc8"]
+[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_bt7ic"]
+[ext_resource type="Texture2D" uid="uid://bbvk0pp8vxx53" path="res://textures/enemy/cyclops.png" id="2_dutc8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t6rus"]
 radius = 14.0089
