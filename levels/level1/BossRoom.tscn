@@ -39,4 +39,4 @@ position = Vector2(0, 536)
 zoom = Vector2(2, 2)
 
 [node name="BeijaFlor" parent="." instance=ExtResource("4_vefa7")]
-position = Vector2(24, 416)
+position = Vector2(-328, 384)

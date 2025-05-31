@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqqn5bl0ipivk"]
+[gd_scene load_steps=8 format=3 uid="uid://dqqn5bl0ipivk"]
 
+[ext_resource type="Script" path="res://enemy/beija_flor.gd" id="1_41sqm"]
 [ext_resource type="Texture2D" uid="uid://cb8jnyume20mh" path="res://textures/weapons/spritesheet_hummingbird.png" id="1_ydeab"]
+[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_xgryl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3if2b"]
+radius = 4.66704
 
 [sub_resource type="Animation" id="Animation_x8tye"]
 length = 0.001
@@ -46,6 +49,7 @@ _data = {
 scale = Vector2(8, 8)
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("1_41sqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -60,3 +64,13 @@ shape = SubResource("CircleShape2D_3if2b")
 libraries = {
 "": SubResource("AnimationLibrary_ha7iy")
 }
+
+[node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_xgryl")
+volume_db = -20.0
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[node name="ChaseTimer" type="Timer" parent="."]
