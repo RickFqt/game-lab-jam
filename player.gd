@@ -96,6 +96,17 @@ func _physics_process(delta: float) -> void:
 		if player_attributes.health <= 0.0:
 			health_depleted.emit()
 
+func take_damage(damage: int):
+	player_attributes.health -= damage
+	%HealthBar.value = player_attributes.health
+	player_attributes_changed.emit()
+	
+	# Reproduzir animação de dano
+	%DamageAnimation.play("DamageFlash")
+	
+	if player_attributes.health <= 0.0:
+		health_depleted.emit()
+
 func add_weapon(weapon_scene: PackedScene) -> void:
 	
 	var weapon_name = weapon_scene.resource_path.get_file().get_basename()

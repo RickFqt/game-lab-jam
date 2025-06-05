@@ -6,14 +6,17 @@ var state: State = State.IDLE
 var shoot_timer: Timer
 var dash_timer: Timer
 var chase_timer: Timer
+var calculated_corners: bool
+@export var bullet_damage = damage
+@export var bullet_speed = 6 * speed
 
 var corner_index := 0  # de 0 a 3
 #0 - canto superior esquerdo
 #1 - canto superior direito
 #2 - canto inferior direito
 #3 - canto inferior esquerdo
-var room_x = 30
-var room_y = 30
+var room_x = 640
+var room_y = 300
 var corners : Array
 
 func _ready():
@@ -24,15 +27,15 @@ func _ready():
 	shoot_timer.timeout.connect(_on_shoot_timeout)
 	dash_timer.timeout.connect(_on_dash_timeout)
 	chase_timer.timeout.connect(_on_chase_timeout)
-	calculate_corners()
 	start_phase()
 
 func calculate_corners():
-	var top_left = position
-	var top_right = position + Vector2(room_x, 0)
-	var bottom_right = position + Vector2(room_x, room_y)
-	var bottom_left = position + Vector2(0, room_y)
+	var top_left = global_position
+	var top_right = global_position + Vector2(room_x, 0)
+	var bottom_right = global_position + Vector2(room_x, room_y)
+	var bottom_left = global_position + Vector2(0, room_y)
 	corners = [top_left, top_right, bottom_right, bottom_left]
+	calculated_corners = true
 
 func start_phase():
 	match stage:
@@ -52,11 +55,14 @@ func make_attack():
 	if not player: return
 	var direction = (player.global_position - global_position).normalized()
 	#TODO: Ajeitar o spawn projectile
-	#spawn_projectile(direction)
+	spawn_projectile(direction)
 
 func spawn_projectile(dir: Vector2):
-	var p = preload("res://weapons/aux_scenes/bullet.tscn").instantiate()
+	var p = preload("res://enemy/bullets/bulletenemy.tscn").instantiate()
 	p.global_position = global_position
+	p.damage = bullet_damage
+	p.speed = bullet_speed
+	p.rotation = dir.angle()
 	#p.direction = dir
 	get_tree().current_scene.add_child(p)
 
@@ -78,7 +84,12 @@ func _on_chase_timeout():
 
 #TODO: Ajeitar os corners
 func dash_to_random_corner():
-	var target = corners[randi() % corners.size()]
+	if not calculated_corners:
+		calculate_corners()
+	var idx = randi() % corners.size()
+	var target = corners[idx]
+	if target == global_position:
+		target = corners[(idx + 1) % corners.size()]
 	var duration = 0.5
 	var tween = create_tween()
 	tween.tween_property(self, "global_position", target, duration)
