@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bywfa4ha3kof3"]
 
 [ext_resource type="Script" path="res://weapons/scripts/arara.gd" id="1_fbogk"]
-[ext_resource type="Texture2D" uid="uid://byjurkj2q5w6a" path="res://textures/araraUp.png" id="2_k2jfx"]
-[ext_resource type="Texture2D" uid="uid://bptbslhe4faqw" path="res://textures/araraMIddle.png" id="3_aotlc"]
-[ext_resource type="Texture2D" uid="uid://cuq1prtrejefl" path="res://textures/araraDown.png" id="4_gk0gi"]
+[ext_resource type="Texture2D" uid="uid://i1rjyf2tcufq" path="res://textures/araraUp.png" id="2_k2jfx"]
+[ext_resource type="Texture2D" uid="uid://bntgdla840qbc" path="res://textures/araraMIddle.png" id="3_aotlc"]
+[ext_resource type="Texture2D" uid="uid://dp3rw1s4qt3xi" path="res://textures/araraDown.png" id="4_gk0gi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72vlg"]
 animations = [{
@@ -31,7 +31,7 @@ radius = 7.5
 [node name="Arara" type="Area2D"]
 top_level = true
 collision_layer = 0
-collision_mask = 7
+collision_mask = 6
 script = ExtResource("1_fbogk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -63,7 +63,7 @@ func _level_up() -> void:
 	elif level == 2:
 		attributes.base_damage += 2
 	elif level == 3:
-		attributes.speed += PI/2
+		attributes.base_speed += PI/2
 	elif level == 4:
 		attributes.n_projectiles += 1
 	elif level == 5:

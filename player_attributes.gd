@@ -5,7 +5,7 @@ class_name PlayerAttributes
 # Propriedades do player
 var health: float = 80.0
 var max_health: float = 80.0
-var speed: int = 200
+var speed: int = 100
 var armor: int = 1
 var regen: float = 1.0
 var collect_range: float = 150.0

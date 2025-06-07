@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7npo058rrn3j"]
+[gd_scene load_steps=21 format=3 uid="uid://b7npo058rrn3j"]
 
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="1_v3u04"]
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_xmmdq"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1gl57haltvld" path="res://enemy/enemy_cyclops.tscn" id="5_turpt"]
 [ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_le4mg"]
 [ext_resource type="PackedScene" uid="uid://cqjayu8xkc2jr" path="res://mato.tscn" id="6_vrs17"]
-[ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_m3mph"]
-[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
+[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
 [ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_ljdnk"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
@@ -77,14 +76,6 @@ enemy = ExtResource("4_eix5v")
 enemy_num = 4
 enemy_spawn_delay = 0
 
-[sub_resource type="Resource" id="Resource_snhge"]
-script = ExtResource("2_exbdq")
-time_start = 300
-time_end = 300
-enemy = ExtResource("7_m3mph")
-enemy_num = 1
-enemy_spawn_delay = 0
-
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 15, -497, 0, 0, 0, 0, 2464, -483, 0, 0, 0, 0, 2464, 1075, 0, 0, 0, 0, 5, 1082, 0, 0, 0, 0, 8, -490)
@@ -94,7 +85,7 @@ point_count = 5
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xmmdq")
-spawns = Array[ExtResource("2_exbdq")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3"), SubResource("Resource_snhge")])
+spawns = Array[ExtResource("2_exbdq")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3")])
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -980
@@ -176,7 +167,6 @@ text = "Game Over"
 
 [node name="BossTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
 one_shot = true
 autostart = true
 

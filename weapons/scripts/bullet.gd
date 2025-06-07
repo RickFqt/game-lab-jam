@@ -1,6 +1,6 @@
 extends Area2D
 
-const RANGE = 600
+var RANGE = 600
 var travelled_distance = 0
 var damage = 1
 var speed = 2

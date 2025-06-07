@@ -1,6 +1,6 @@
 extends BossBase
 
-enum State { IDLE, SHOOT, DASH, CHASE }
+enum State { IDLE, CHASE }
 
 var state: State = State.IDLE
 var shoot_timer: Timer
@@ -42,13 +42,14 @@ func start_phase():
 		1:
 			shoot_timer.start(2.0)
 			dash_timer.start(5.0)
+			#chase_timer.start(10.0)
 		2:
 			shoot_timer.start(1.2)
 			dash_timer.start(3.5)
 		3:
 			shoot_timer.start(1.0)
 			dash_timer.start(3.0)
-			chase_timer.start(7.0)
+			chase_timer.start(10.0)
 
 func make_attack():
 	# Dispara projétil em direção ao jogador
@@ -63,6 +64,7 @@ func spawn_projectile(dir: Vector2):
 	p.damage = bullet_damage
 	p.speed = bullet_speed
 	p.rotation = dir.angle()
+	p.RANGE = 1200
 	#p.direction = dir
 	get_tree().current_scene.add_child(p)
 
@@ -75,12 +77,13 @@ func _on_dash_timeout():
 	dash_timer.start()
 
 func _on_chase_timeout():
-	if stage == 3:
-		state = State.CHASE
-		# Dura 3 segundos, por exemplo
-		await get_tree().create_timer(3.0).timeout
-		state = State.IDLE
-		chase_timer.start()
+	state = State.CHASE
+	# Dura 3 segundos, por exemplo
+	dash_timer.paused = true
+	await get_tree().create_timer(10.0).timeout
+	dash_timer.paused = false
+	state = State.IDLE
+	chase_timer.start()
 
 #TODO: Ajeitar os corners
 func dash_to_random_corner():
@@ -92,6 +95,9 @@ func dash_to_random_corner():
 		target = corners[(idx + 1) % corners.size()]
 	var duration = 0.5
 	var tween = create_tween()
+	var target_rotation = rotation + deg_to_rad(360)
+	var rotation_time = 0.7
+	tween.tween_property(self, "rotation", target_rotation, rotation_time)
 	tween.tween_property(self, "global_position", target, duration)
 
 func _physics_process(delta):

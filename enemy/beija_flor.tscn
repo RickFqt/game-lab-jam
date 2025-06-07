@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqqn5bl0ipivk"]
 
 [ext_resource type="Script" path="res://enemy/beija_flor.gd" id="1_41sqm"]
-[ext_resource type="Texture2D" uid="uid://cb8jnyume20mh" path="res://textures/weapons/spritesheet_hummingbird.png" id="1_ydeab"]
+[ext_resource type="Texture2D" uid="uid://co7gux0n4r5hu" path="res://textures/weapons/spritesheet_hummingbird.png" id="1_ydeab"]
 [ext_resource type="Shader" path="res://shaders/invertcolors.gdshader" id="2_bhir6"]
-[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_xgryl"]
+[ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_xgryl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gffr1"]
 shader = ExtResource("2_bhir6")

@@ -78,6 +78,8 @@ func _on_boss_timer_timeout() -> void:
 	add_child(boss_scene)
 	boss_scene.global_position = Vector2(20000, 20000)
 	$Player.global_position = Vector2(20000, 20000+ 528)
+	$AudioManager.start_boss_level1()
+	$Player.player_attributes.speed = 200
 
 
 func _on_spawn_mato_timer_timeout() -> void:

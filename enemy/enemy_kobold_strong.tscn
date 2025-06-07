@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvfv2cdtspxq8"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_yf6qg"]
-[ext_resource type="Texture2D" uid="uid://pja1vfdsa32a" path="res://textures/enemy/kolbold_strong.png" id="2_7sjmh"]
-[ext_resource type="AudioStream" uid="uid://dypg4gx2ndsa6" path="res://audio/sfx/enemy_hit.ogg" id="2_m0ghx"]
+[ext_resource type="Texture2D" uid="uid://c0dc2at14pkhq" path="res://textures/enemy/kolbold_strong.png" id="2_7sjmh"]
+[ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_m0ghx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukv3t"]
 radius = 12.1655
@@ -51,7 +51,7 @@ collision_mask = 2
 script = ExtResource("1_yf6qg")
 health = 20
 damage = 8
-speed = 28.0
+speed = 80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
