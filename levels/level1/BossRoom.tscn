@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dp7kafuwxdnku"]
+[gd_scene load_steps=11 format=4 uid="uid://dp7kafuwxdnku"]
 
 [ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
 [ext_resource type="Script" path="res://levels/level1/boss_room.gd" id="1_k6mym"]
 [ext_resource type="Texture2D" uid="uid://cl7fdj4knw0yg" path="res://textures/obstaculo.png" id="2_tpbmw"]
 [ext_resource type="PackedScene" uid="uid://dqqn5bl0ipivk" path="res://enemy/beija_flor.tscn" id="4_vefa7"]
+[ext_resource type="PackedScene" uid="uid://c7p0gdnymx26u" path="res://trees/Flower.tscn" id="5_j7pej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0roe"]
 texture = ExtResource("1_amc5m")
@@ -51,6 +52,27 @@ tile_set = SubResource("TileSet_p18j2")
 unique_name_in_owner = true
 position = Vector2(0, 536)
 zoom = Vector2(2, 2)
+
+[node name="Flowers" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Flower" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(464, 848)
+
+[node name="Flower2" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(-448, 848)
+
+[node name="Flower3" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(0, 768)
+
+[node name="Flower4" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(-448, 1296)
+
+[node name="Flower6" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(464, 1296)
+
+[node name="Flower5" parent="Flowers" instance=ExtResource("5_j7pej")]
+position = Vector2(0, 1344)
 
 [node name="BeijaFlor" parent="." instance=ExtResource("4_vefa7")]
 position = Vector2(-328, 384)
