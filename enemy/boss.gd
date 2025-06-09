@@ -40,9 +40,9 @@ func take_damage(damage: int):
 
 func change_stage(new_stage: int):
 	stage = new_stage
-	adapt_behavior(stage)
+	adapt_behavior()
 	
-func adapt_behavior(new_stage : int):
+func adapt_behavior():
 	pass
 
 func die():

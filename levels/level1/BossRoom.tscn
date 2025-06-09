@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=4 uid="uid://dp7kafuwxdnku"]
 
-[ext_resource type="Texture2D" uid="uid://bbd5oviuo80ll" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
+[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
 [ext_resource type="Script" path="res://levels/level1/boss_room.gd" id="1_k6mym"]
-[ext_resource type="Texture2D" uid="uid://ni7w0srkkpbc" path="res://textures/obstaculo.png" id="2_tpbmw"]
+[ext_resource type="Texture2D" uid="uid://cl7fdj4knw0yg" path="res://textures/obstaculo.png" id="2_tpbmw"]
 [ext_resource type="PackedScene" uid="uid://dqqn5bl0ipivk" path="res://enemy/beija_flor.tscn" id="4_vefa7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0roe"]

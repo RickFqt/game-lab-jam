@@ -28,7 +28,7 @@ func _ready():
 	dash_timer.timeout.connect(_on_dash_timeout)
 	chase_timer.timeout.connect(_on_chase_timeout)
 	player.add_health(player.player_attributes.max_health)
-	start_phase()
+	adapt_behavior()
 
 func calculate_corners():
 	var top_left = global_position
@@ -38,15 +38,15 @@ func calculate_corners():
 	corners = [top_left, top_right, bottom_right, bottom_left]
 	calculated_corners = true
 
-func start_phase():
+func adapt_behavior():
 	match stage:
 		1:
 			shoot_timer.start(2.0)
 			dash_timer.start(5.0)
 			#chase_timer.start(10.0)
 		2:
-			shoot_timer.start(1.2)
-			dash_timer.start(3.5)
+			shoot_timer.start(1.5)
+			dash_timer.start(4.0)
 		3:
 			shoot_timer.start(1.0)
 			dash_timer.start(3.0)
