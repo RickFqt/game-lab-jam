@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://dp7kafuwxdnku"]
+[gd_scene load_steps=10 format=4 uid="uid://dp7kafuwxdnku"]
 
-[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
+[ext_resource type="Texture2D" uid="uid://bbd5oviuo80ll" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
 [ext_resource type="Script" path="res://levels/level1/boss_room.gd" id="1_k6mym"]
-[ext_resource type="Texture2D" uid="uid://2o4l4rkvfh1s" path="res://textures/obstaculo.png" id="2_tpbmw"]
+[ext_resource type="Texture2D" uid="uid://ni7w0srkkpbc" path="res://textures/obstaculo.png" id="2_tpbmw"]
 [ext_resource type="PackedScene" uid="uid://dqqn5bl0ipivk" path="res://enemy/beija_flor.tscn" id="4_vefa7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0roe"]
@@ -19,6 +19,20 @@ texture = ExtResource("2_tpbmw")
 physics_layer_0/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_k0roe")
 sources/1 = SubResource("TileSetAtlasSource_qc7v4")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrsoi"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0t1l"]
+bg_color = Color(0.650084, 0.129622, 0.132555, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="BossRoom" type="Node2D"]
 script = ExtResource("1_k6mym")
@@ -40,3 +54,14 @@ zoom = Vector2(2, 2)
 
 [node name="BeijaFlor" parent="." instance=ExtResource("4_vefa7")]
 position = Vector2(-328, 384)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -399.0
+offset_top = 763.0
+offset_right = 401.0
+offset_bottom = 778.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jrsoi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t0t1l")
+value = 100.0
+show_percentage = false

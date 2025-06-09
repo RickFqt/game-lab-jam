@@ -27,6 +27,7 @@ func _ready():
 	shoot_timer.timeout.connect(_on_shoot_timeout)
 	dash_timer.timeout.connect(_on_dash_timeout)
 	chase_timer.timeout.connect(_on_chase_timeout)
+	player.add_health(player.player_attributes.max_health)
 	start_phase()
 
 func calculate_corners():
@@ -101,7 +102,16 @@ func dash_to_random_corner():
 	tween.tween_property(self, "global_position", target, duration)
 
 func _physics_process(delta):
+	if player:
+		look_at(player.position)
+		if global_position.x < player.position.x:
+			#print("esquerda")
+			$AnimatedSprite2D.scale.y = 0.25
+		else:
+			#print("direita")
+			$AnimatedSprite2D.scale.y = -0.25
 	if state == State.CHASE and player:
 		var dir = (player.global_position - global_position).normalized()
 		velocity = dir * speed
 		move_and_slide()
+		
