@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=4 uid="uid://dp7kafuwxdnku"]
 
-[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
+[ext_resource type="Texture2D" uid="uid://bbd5oviuo80ll" path="res://textures/background/grass_tileset_vs.png" id="1_amc5m"]
 [ext_resource type="Script" path="res://levels/level1/boss_room.gd" id="1_k6mym"]
-[ext_resource type="Texture2D" uid="uid://cl7fdj4knw0yg" path="res://textures/obstaculo.png" id="2_tpbmw"]
+[ext_resource type="Texture2D" uid="uid://ni7w0srkkpbc" path="res://textures/obstaculo.png" id="2_tpbmw"]
 [ext_resource type="PackedScene" uid="uid://dqqn5bl0ipivk" path="res://enemy/beija_flor.tscn" id="4_vefa7"]
 [ext_resource type="PackedScene" uid="uid://c7p0gdnymx26u" path="res://trees/Flower.tscn" id="5_j7pej"]
 
@@ -52,6 +52,117 @@ tile_set = SubResource("TileSet_p18j2")
 unique_name_in_owner = true
 position = Vector2(0, 536)
 zoom = Vector2(2, 2)
+
+[node name="FlowersWin" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="Flower" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-254, 1306)
+
+[node name="Flower2" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-636, 1100)
+
+[node name="Flower3" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-454, 1092)
+
+[node name="Flower4" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-544, 1196)
+
+[node name="Flower6" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-296, 1106)
+
+[node name="Flower7" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(92, 1224)
+
+[node name="Flower8" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-142, 1114)
+
+[node name="Flower9" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(0, 1120)
+
+[node name="Flower10" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-76, 1224)
+
+[node name="Flower11" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(268, 1232)
+
+[node name="Flower12" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(172, 1130)
+
+[node name="Flower5" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-382, 1204)
+
+[node name="Flower13" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(114, 1018)
+
+[node name="Flower14" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-276, 912)
+
+[node name="Flower15" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-94, 904)
+
+[node name="Flower16" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-184, 1008)
+
+[node name="Flower17" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(64, 918)
+
+[node name="Flower18" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(452, 1036)
+
+[node name="Flower19" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(218, 926)
+
+[node name="Flower20" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(360, 932)
+
+[node name="Flower21" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(284, 1036)
+
+[node name="Flower22" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(628, 1044)
+
+[node name="Flower23" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(532, 942)
+
+[node name="Flower24" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-22, 1016)
+
+[node name="Flower25" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-332, 1392)
+
+[node name="Flower26" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-722, 1286)
+
+[node name="Flower27" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(680, 790)
+
+[node name="Flower28" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-630, 1382)
+
+[node name="Flower29" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(458, 1420)
+
+[node name="Flower30" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(554, 1180)
+
+[node name="Flower31" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-212, 1422)
+
+[node name="Flower32" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(304, 1398)
+
+[node name="Flower33" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(608, 1408)
+
+[node name="Flower34" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(182, 1418)
+
+[node name="Flower35" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(430, 1164)
+
+[node name="Flower36" parent="FlowersWin" instance=ExtResource("5_j7pej")]
+position = Vector2(-468, 1390)
 
 [node name="Flowers" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)

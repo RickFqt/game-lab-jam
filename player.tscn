@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://dt4d6pm5r0re2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_112fg"]
-[ext_resource type="Texture2D" uid="uid://d1oxjcqew72lb" path="res://characters/lagarto.png" id="2_bl337"]
-[ext_resource type="AudioStream" uid="uid://c27unwwvh2d2u" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
+[ext_resource type="Texture2D" uid="uid://cpubstd6uvrsn" path="res://characters/lagarto.png" id="2_bl337"]
+[ext_resource type="AudioStream" uid="uid://bp5e2b10vsfvh" path="res://audio/sfx/levelup.ogg" id="3_t60sq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6537"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)

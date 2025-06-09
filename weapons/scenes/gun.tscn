@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c248dt6ocf0t2"]
 
 [ext_resource type="Script" path="res://weapons/scripts/gun.gd" id="1_y5ncp"]
-[ext_resource type="Texture2D" uid="uid://cb8jnyume20mh" path="res://textures/weapons/spritesheet_hummingbird.png" id="2_o0cj2"]
+[ext_resource type="Texture2D" uid="uid://dlq1pk6qadvr0" path="res://textures/weapons/spritesheet_hummingbird.png" id="2_o0cj2"]
 [ext_resource type="Texture2D" uid="uid://cswb5do8rrj7q" path="res://pistol/pistol.png" id="3_sqvc2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eorgc"]

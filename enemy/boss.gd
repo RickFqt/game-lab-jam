@@ -11,6 +11,7 @@ var stage: int = 1
 @onready var player = get_node("/root/Game/Player")
 
 signal damaged
+signal died
 
 func _ready() -> void:
 	health = max_health
@@ -22,7 +23,7 @@ func initialize():
 func take_damage(damage: int):
 	health -= damage
 	#para testes
-	#healt -= 100
+	health -= 500
 	if health < 0:
 		health = 0
 	
@@ -46,4 +47,5 @@ func adapt_behavior():
 	pass
 
 func die():
+	emit_signal("died")
 	queue_free()
