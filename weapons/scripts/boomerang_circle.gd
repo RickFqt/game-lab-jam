@@ -4,17 +4,17 @@ var object_scene: PackedScene = preload("res://weapons/aux_scenes/boomerang_bana
 
 func _ready() -> void:
 	attributes.base_cooldown = 2
-	attributes.base_damage = 2
+	attributes.base_damage = 5
 	attributes.base_speed = 100
-	attributes.n_projectiles = 1
+	attributes.n_projectiles = 2
 	attributes.base_area = 30.0
 	image = preload("res://textures/GUI/weapons/20_back.png")
 	descriptions= [
 		"Micos jogam mais uma banana-bumerangue.",
-		"Diminui o tempo de espera entre bumerangues em 50%.",
-		"Aumenta o dano base dos bumerangues em 3.",
+		"Diminui o tempo de espera entre bumerangues.",
+		"Aumenta o dano base dos bumerangues.",
 		"Micos jogam mais uma banana-bumerangue.",
-		"Aumenta a velocidade dos bumerangues em 100%."]
+		"Aumenta o dano e a velocidade dos bumerangues."]
 	weapon_name = "Mico"
 	%TimerBoomerang.wait_time = calculate_cooldown()
 	%TimerBoomerang.start()
@@ -56,6 +56,7 @@ func _level_up() -> void:
 		attributes.n_projectiles += 1
 	elif level == 5:
 		attributes.base_speed *= 2
+		attributes.base_damage += 10
 	level += 1
 
 

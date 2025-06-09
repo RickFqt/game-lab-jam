@@ -9,7 +9,7 @@ var original_area
 
 func _ready() -> void:
 	attributes.base_cooldown = 0.3
-	attributes.base_damage = 3
+	attributes.base_damage = 10
 	attributes.base_speed = PI
 	attributes.n_projectiles = 1
 	attributes.base_area = 40.0
@@ -17,10 +17,10 @@ func _ready() -> void:
 	image = preload("res://textures/GUI/weapons/2_back.png")
 	descriptions= [
 		"Aumenta o número de cascos em 1.",
-		"Aumenta o dano base em 2.",
+		"Aumenta o dano base.",
 		"Aumenta a velocidade de rotação dos cascos.",
 		"Aumenta o número de cascos em 1.",
-		"Aumenta o tamanho dos cascos."]
+		"Aumenta o dano e o tamanho dos cascos."]
 	weapon_name = "Tartaruga"
 	update_objects()
 
@@ -61,12 +61,13 @@ func _level_up() -> void:
 	if level == 1:
 		attributes.n_projectiles += 1
 	elif level == 2:
-		attributes.base_damage += 2
+		attributes.base_damage += 5
 	elif level == 3:
 		attributes.base_speed += PI/2
 	elif level == 4:
 		attributes.n_projectiles += 1
 	elif level == 5:
+		attributes.base_damage += 10
 		attributes.base_area += 50.0
 	level += 1
 	update_objects()

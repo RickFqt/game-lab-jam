@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bl5nr1wi7xsk8" path="res://audio/sfx/Rawr.mp3" id="3_or77e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifh1p"]
-size = Vector2(900, 600)
+size = Vector2(1500, 1100)
 
 [node name="Kabum" type="Area2D"]
 collision_layer = 0
@@ -17,16 +17,16 @@ unique_name_in_owner = true
 wait_time = 0.071
 autostart = true
 
-[node name="DeathArea" type="CollisionShape2D" parent="."]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_ifh1p")
-
-[node name="Sprite2D" type="Sprite2D" parent="DeathArea"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.431373)
 position = Vector2(-1.52588e-05, 0)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_4i6rg")
+
+[node name="DeathArea" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_ifh1p")
 
 [node name="snd_rawr" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
