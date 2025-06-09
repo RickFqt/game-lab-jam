@@ -10,6 +10,8 @@ var health: int
 var stage: int = 1
 @onready var player = get_node("/root/Game/Player")
 
+signal damaged
+
 func _ready() -> void:
 	health = max_health
 	initialize()
@@ -19,6 +21,8 @@ func initialize():
 
 func take_damage(damage: int):
 	health -= damage
+	#para testes
+	#healt -= 100
 	if health < 0:
 		health = 0
 	
@@ -30,12 +34,15 @@ func take_damage(damage: int):
 			change_stage(2)
 		elif health <= max_health * 0.33 and stage == 2:
 			change_stage(3)
+	print("chefão tomou")
+	print(health)
+	emit_signal("damaged")
 
 func change_stage(new_stage: int):
 	stage = new_stage
-	adapt_behavior(stage)
+	adapt_behavior()
 	
-func adapt_behavior(new_stage : int):
+func adapt_behavior():
 	pass
 
 func die():
