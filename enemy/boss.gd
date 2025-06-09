@@ -23,7 +23,7 @@ func initialize():
 func take_damage(damage: int):
 	health -= damage
 	#para testes
-	health -= 500
+	#health -= 500
 	if health < 0:
 		health = 0
 	

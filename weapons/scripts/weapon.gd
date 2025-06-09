@@ -37,4 +37,4 @@ func update_player_attributes(p_att : PlayerAttributes) -> void:
 	
 
 func reached_max_level() -> bool:
-	return attributes.max_level <= attributes.level
+	return attributes.max_level <= level

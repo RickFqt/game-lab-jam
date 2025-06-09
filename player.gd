@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal health_depleted
 signal player_attributes_changed
+signal weapon_chose
 
 var player_attributes : PlayerAttributes = PlayerAttributes.new()
 var experience: int = 0
@@ -46,7 +47,7 @@ func _ready():
 	%AnimatedSprite2D.play("walking")
 	load_weapon_scenes()
 	level_up()
-	#add_experience(1000000)
+	#add_experience(100000000)
 
 func load_weapon_scenes():
 	var weapons_dir = DirAccess.open("res://weapons/scenes")
@@ -129,6 +130,7 @@ func upgrade_weapons_inventory(weapon_scene: PackedScene) -> void:
 	
 	var weapon_name = weapon_scene.resource_path.get_file().get_basename()
 	
+	emit_signal("weapon_chose")
 	if weapons_inventory.has(weapon_name):
 		weapons_inventory[weapon_name].level_up(1)
 		return
@@ -156,6 +158,7 @@ func add_health(amount: int) -> void:
 	%HealthBar.value = player_attributes.health
 
 func level_up():
+	print("Socorro")
 	sndLevelUp.play()
 	#lblLevel.text = str("Level: ",experience_level)
 	var tween = levelPanel.create_tween()
@@ -171,8 +174,10 @@ func level_up():
 			upgradeOptions.add_child(option_choice)
 				
 		get_tree().paused = true
-		
-	
+		#print("Parei?")
+		await weapon_chose
+		await get_tree().create_timer(0.1).timeout
+	#print("Nao parei")
 	player_attributes.level += 1
 	experience -= experience_needed
 	experience = max(experience, 0)
@@ -180,14 +185,19 @@ func level_up():
 	%ExperienceBar.max_value = experience_needed
 	#draw_weapon_or_item()
 	player_attributes_changed.emit()
-	#add_experience(0) # Just in case the player goes 2 or more levels up
+	add_experience(0) # Just in case the player goes 2 or more levels up
 
 func draw_weapon_or_item(amount : int = 3):
 	var weapons_pool: Array[PackedScene] = []
 	#var items_pool
 		
 	for weapon in weapon_scenes:
-		if weapons_inventory.has(weapon.resource_name) && weapons_inventory[weapon.resource_name].reached_max_level():
+		var weapon_name = weapon.resource_path.get_file().get_basename()
+		if weapons_inventory.has(weapon_name):
+			print("Has name")
+			print(weapons_inventory[weapon_name].reached_max_level())
+		if weapons_inventory.has(weapon_name) && weapons_inventory[weapon_name].reached_max_level():
+			print("Entrei no continue")
 			continue
 		weapons_pool.append(weapon)
 		#print("Dei append no " + weapon.resource_name)
