@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cs1o7rfsylsdi"]
 
 [ext_resource type="Script" path="res://utility/item_option.gd" id="1_nx0a8"]
-[ext_resource type="Texture2D" uid="uid://b8ej7g8lhk4qa" path="res://textures/enemy/giant_amoeba_new.png" id="1_ppa7p"]
+[ext_resource type="Texture2D" uid="uid://b8y1gt0e1kuky" path="res://textures/enemy/giant_amoeba_new.png" id="1_ppa7p"]
 
 [node name="ItemOption" type="ColorRect"]
 custom_minimum_size = Vector2(720, 160)

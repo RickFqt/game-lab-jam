@@ -46,6 +46,7 @@ func _ready():
 	%AnimatedSprite2D.play("walking")
 	load_weapon_scenes()
 	level_up()
+	#add_experience(1000000)
 
 func load_weapon_scenes():
 	var weapons_dir = DirAccess.open("res://weapons/scenes")
@@ -170,6 +171,7 @@ func level_up():
 			upgradeOptions.add_child(option_choice)
 				
 		get_tree().paused = true
+		
 	
 	player_attributes.level += 1
 	experience -= experience_needed
@@ -178,6 +180,7 @@ func level_up():
 	%ExperienceBar.max_value = experience_needed
 	#draw_weapon_or_item()
 	player_attributes_changed.emit()
+	#add_experience(0) # Just in case the player goes 2 or more levels up
 
 func draw_weapon_or_item(amount : int = 3):
 	var weapons_pool: Array[PackedScene] = []
@@ -187,6 +190,7 @@ func draw_weapon_or_item(amount : int = 3):
 		if weapons_inventory.has(weapon.resource_name) && weapons_inventory[weapon.resource_name].reached_max_level():
 			continue
 		weapons_pool.append(weapon)
+		#print("Dei append no " + weapon.resource_name)
 	
 	weapons_pool.shuffle()
 	var chosen_weapons = []

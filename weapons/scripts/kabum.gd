@@ -3,7 +3,7 @@ extends Weapon
 func _ready() -> void:
 	visible = false
 	attributes.base_cooldown = 120
-	attributes.base_damage = 1000
+	attributes.base_damage = 500
 	#attributes.base_area = 200
 	%Timer.wait_time = 0.01
 	image = preload("res://textures/GUI/weapons/50_back.png")

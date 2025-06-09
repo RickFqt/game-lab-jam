@@ -7,11 +7,11 @@ func _ready() -> void:
 	attributes.base_speed = 300
 	image = preload("res://textures/GUI/weapons/1_back.png")
 	descriptions= [
-		"Diminui o intervalo entre tiros em 33%.",
-		"Aumenta o dano base dos projéteis em 10.",
-		"Diminui o intervalo entre tiros em 33%.",
-		"Aumenta o dano base dos projéteis em 10.",
-		"Diminui o intervalo entre tiros em 50%."]
+		"Diminui o intervalo entre tiros.",
+		"Aumenta o dano base dos projéteis.",
+		"Diminui o intervalo entre tiros.",
+		"Aumenta o dano base dos projéteis.",
+		"Diminui o intervalo entre tiros."]
 	weapon_name = "Beija-flor"
 	%AnimatedSprite2D.play("default")
 	%Timer.wait_time = calculate_cooldown()
