@@ -13,6 +13,8 @@ var items_inventory : Array = []
 
 var weapon_scenes: Array[PackedScene]
 
+var stunned: bool = false
+
 
 var weapons_image_path : Dictionary = {
 	"gun": ["res://textures/GUI/weapons/1_back.png", 
@@ -65,8 +67,11 @@ func load_weapon_scenes():
 		print("An error occurred when trying to access the weapons_dir path.")
 
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * player_attributes.speed
+	if stunned:
+		velocity = Vector2.ZERO
+	else:
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = direction * player_attributes.speed
 	move_and_slide()
 	if Input.is_action_pressed("move_left"):
 		%AnimatedSprite2D.scale.x = abs(%AnimatedSprite2D.scale.x)
@@ -108,6 +113,20 @@ func take_damage(damage: int):
 	
 	if player_attributes.health <= 0.0:
 		health_depleted.emit()
+
+func stun(duration : float):
+	if stunned:
+		return # já está atordoado
+	stunned = true
+	velocity = Vector2.ZERO
+	# $StunEffect.visible = true  # Opcional: um sprite ou partícula
+	set_process_input(false)
+
+	await get_tree().create_timer(duration).timeout
+
+	stunned = false
+	# $StunEffect.visible = false
+	set_process_input(true)
 
 func add_weapon(weapon_scene: PackedScene) -> void:
 	

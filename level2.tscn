@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxhxgjysus05x"]
+
+[ext_resource type="Script" path="res://levels/level2/level2.gd" id="1_ye863"]
+[ext_resource type="PackedScene" uid="uid://daiiycohs4bc" path="res://levels/level2/Mico.tscn" id="5_78qjw"]
+[ext_resource type="PackedScene" uid="uid://bpkw0t00nghww" path="res://levels/level2/chest.tscn" id="6_f2pcn"]
+[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
+[ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
+[ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_onr3d"]
+
+[sub_resource type="Curve2D" id="Curve2D_gmud5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15, -497, 0, 0, 0, 0, 2464, -483, 0, 0, 0, 0, 2464, 1075, 0, 0, 0, 0, 5, 1082, 0, 0, 0, 0, 8, -490)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ye863")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -980
+texture_filter = 2
+texture_repeat = 2
+texture = ExtResource("8_dgitn")
+region_enabled = true
+region_rect = Rect2(-16000, -16000, 40000, 20000)
+
+[node name="Player" parent="." instance=ExtResource("9_fs63n")]
+position = Vector2(968, 536)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-352.427, -81.4876)
+scale = Vector2(0.285482, 0.266624)
+curve = SubResource("Curve2D_gmud5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(15, -497)
+rotation = 0.00571656
+
+[node name="SpawnMatoTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 161
+text = "Game Over"
+
+[node name="BossTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[node name="AudioManager" parent="." instance=ExtResource("12_onr3d")]
+
+[node name="Mico" parent="." node_paths=PackedStringArray("arbustos") instance=ExtResource("5_78qjw")]
+position = Vector2(965, 458)
+arbustos = [NodePath("../Chests/Chest"), NodePath("../Chests/Chest2"), NodePath("../Chests/Chest3"), NodePath("../Chests/Chest4"), NodePath("../Chests/Chest5"), NodePath("../Chests/Chest6"), NodePath("../Chests/Chest7"), NodePath("../Chests/Chest8"), NodePath("../Chests/Chest9")]
+
+[node name="Chests" type="Node2D" parent="."]
+
+[node name="Chest" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(497, 858)
+
+[node name="Chest2" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1371, 859)
+
+[node name="Chest3" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1508, 553)
+
+[node name="Chest4" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1357, 242)
+
+[node name="Chest5" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(917, 162)
+
+[node name="Chest6" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(523, 168)
+
+[node name="Chest7" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(160, 336)
+
+[node name="Chest8" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(53, 655)
+
+[node name="Chest9" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1018, 887)
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SpawnMatoTimer" to="." method="_on_spawn_mato_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

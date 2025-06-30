@@ -14,15 +14,7 @@ var spawn_timer: float = 0.0
 
 func _ready() -> void:
 	%SpawnMatoTimer.wait_time = spawn_mato_interval
-	%SpawnTimer.start()
-	%BossTimer.start()
-	%SpawnMatoTimer.start()
 	
-
-#func _process(delta: float) -> void:
-	#time_since_last_wave += delta
-	#if time_since_last_wave >= WAVE_DURATION:
-		#start_new_wave()
 
 func start_new_wave():
 	#current_wave += 1
@@ -30,14 +22,6 @@ func start_new_wave():
 	spawn_mato_interval = max(0.5, spawn_mato_interval - 0.1)  # Reduz o intervalo, mas mantém limite mínimo
 	%SpawnMatoTimer.wait_time = spawn_mato_interval
 	#print("Starting wave:", current_wave)
-
-#func spawn_mob(is_boss = false):
-	#var new_mob = preload("res://mob.tscn").instantiate()
-	#%PathFollow2D.progress_ratio = randf()
-	#new_mob.global_position = %PathFollow2D.global_position
-	#if is_boss:
-		#new_mob.change_to_boss()
-	#add_child(new_mob)
 
 func spawn_mato():
 	var new_mato = preload("res://mato.tscn").instantiate()

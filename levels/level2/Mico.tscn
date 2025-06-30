@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://daiiycohs4bc"]
+
+[ext_resource type="Script" path="res://levels/level2/Mico.gd" id="1_52sv5"]
+[ext_resource type="PackedScene" uid="uid://bftyrk80jvub5" path="res://levels/level2/banana.tscn" id="2_k2vmy"]
+[ext_resource type="Texture2D" uid="uid://btbxea1f3vwot" path="res://characters/slime/slime_body_hurt.png" id="2_usjsd"]
+[ext_resource type="PackedScene" uid="uid://ccbrhoxflxb4x" path="res://levels/level2/CloneMico.tscn" id="3_2pbyu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3cn7"]
+
+[node name="Mico" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_52sv5")
+banana_scene = ExtResource("2_k2vmy")
+clone_scene = ExtResource("3_2pbyu")
+bullet_speed = 30.0
+speed = 60.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s3cn7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_usjsd")
+
+[node name="TouchZone" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchZone"]
+shape = SubResource("CircleShape2D_s3cn7")
+
+[connection signal="body_entered" from="TouchZone" to="." method="_on_touch_zone_body_entered"]
