@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxhxgjysus05x"]
+[gd_scene load_steps=9 format=3 uid="uid://dxhxgjysus05x"]
 
 [ext_resource type="Script" path="res://levels/level2/level2.gd" id="1_ye863"]
+[ext_resource type="Script" path="res://levels/level2/hud.gd" id="4_fnh0s"]
 [ext_resource type="PackedScene" uid="uid://daiiycohs4bc" path="res://levels/level2/Mico.tscn" id="5_78qjw"]
 [ext_resource type="PackedScene" uid="uid://bpkw0t00nghww" path="res://levels/level2/chest.tscn" id="6_f2pcn"]
-[ext_resource type="Texture2D" uid="uid://b7dmc0ugqpuj" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
+[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
 [ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_onr3d"]
 
@@ -73,6 +74,21 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 161
 text = "Game Over"
 
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_fnh0s")
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_top = 50.0
+offset_right = 61.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "05:00"
+
 [node name="BossTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 300.0
@@ -118,3 +134,4 @@ position = Vector2(1018, 887)
 [connection signal="timeout" from="SpawnMatoTimer" to="." method="_on_spawn_mato_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="died" from="Mico" to="." method="_on_mico_died"]

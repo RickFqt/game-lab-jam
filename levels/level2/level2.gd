@@ -55,16 +55,12 @@ func _on_player_health_depleted() -> void:
 
 
 func _on_boss_timer_timeout() -> void:
-	%SpawnMatoTimer.stop()
-	%SpawnTimer.stop()
-	
-	var boss_scene = load("res://levels/level1/BossRoom.tscn").instantiate()
-	add_child(boss_scene)
-	boss_scene.global_position = Vector2(20000, 20000)
-	$Player.global_position = Vector2(20000, 20000+ 528)
-	$AudioManager.start_boss_level1()
-	$Player.player_attributes.speed = 200
+	_on_player_health_depleted()
 
 
 func _on_spawn_mato_timer_timeout() -> void:
 	spawn_mato() # Replace with function body.
+
+
+func _on_mico_died() -> void:
+	$BossTimer.paused = true
