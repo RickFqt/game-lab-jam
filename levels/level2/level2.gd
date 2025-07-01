@@ -64,3 +64,10 @@ func _on_spawn_mato_timer_timeout() -> void:
 
 func _on_mico_died() -> void:
 	$BossTimer.paused = true
+	%SpawnTimer.paused = true
+
+
+func _on_mico_start_waves() -> void:
+	$HUD/TimerLabel.visible = true
+	%BossTimer.start()
+	%SpawnTimer.start()

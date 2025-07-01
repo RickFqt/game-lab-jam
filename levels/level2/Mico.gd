@@ -13,7 +13,10 @@ var is_hidden: bool = true
 var is_fleeing: bool = false
 var clones: Array[CharacterBody2D] = []
 
+signal start_waves
+
 func initialize():
+	stage = 0
 	randomize()
 	go_to_random_arbusto()
 
@@ -21,7 +24,7 @@ func adapt_behavior():
 	clear_clones()
 	match stage:
 		1:
-			pass # Apenas muda dificuldade dos inimigos fora deste script
+			start_waves.emit()
 		2:
 			pass
 		3:
@@ -70,7 +73,7 @@ func throw_banana_at(dir: Vector2):
 
 func spawn_clones():
 	clear_clones()
-	var n_clones = stage - 1 # Fase 2: 1 clone, Fase 3: 2 clones
+	var n_clones = max(stage - 1, 0) # Fase 2: 1 clone, Fase 3: 2 clones
 	for i in range(n_clones):
 		var clone = clone_scene.instantiate()
 		get_parent().add_child(clone)
@@ -106,4 +109,11 @@ func take_damage(_damage: int):
 
 func _on_touch_zone_body_entered(body: Node2D) -> void:
 	if body == player:
+		
+		$TouchZone/CollisionShape2D.call_deferred("set_disabled", true)
 		change_stage(stage + 1)
+		var original_speed = speed
+		speed = speed * 5
+		await get_tree().create_timer(2.0).timeout # espera 2 segundos
+		$TouchZone/CollisionShape2D.call_deferred("set_disabled", false)
+		speed = original_speed

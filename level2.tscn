@@ -1,12 +1,90 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxhxgjysus05x"]
+[gd_scene load_steps=24 format=3 uid="uid://dxhxgjysus05x"]
 
 [ext_resource type="Script" path="res://levels/level2/level2.gd" id="1_ye863"]
+[ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_hpkmx"]
+[ext_resource type="PackedScene" uid="uid://dxhl2r15hycxu" path="res://enemy/enemy_kobold_weak.tscn" id="3_onv1g"]
+[ext_resource type="PackedScene" uid="uid://bvfv2cdtspxq8" path="res://enemy/enemy_kobold_strong.tscn" id="4_7ihv4"]
 [ext_resource type="Script" path="res://levels/level2/hud.gd" id="4_fnh0s"]
 [ext_resource type="PackedScene" uid="uid://daiiycohs4bc" path="res://levels/level2/Mico.tscn" id="5_78qjw"]
+[ext_resource type="PackedScene" uid="uid://d1gl57haltvld" path="res://enemy/enemy_cyclops.tscn" id="5_w8mkt"]
 [ext_resource type="PackedScene" uid="uid://bpkw0t00nghww" path="res://levels/level2/chest.tscn" id="6_f2pcn"]
+[ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_lcx8f"]
+[ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_77qo1"]
 [ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
 [ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_onr3d"]
+
+[sub_resource type="Resource" id="Resource_x7l6k"]
+script = ExtResource("2_hpkmx")
+time_start = 0
+time_end = 30
+enemy = ExtResource("3_onv1g")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_dway5"]
+script = ExtResource("2_hpkmx")
+time_start = 30
+time_end = 210
+enemy = ExtResource("3_onv1g")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_sf0nw"]
+script = ExtResource("2_hpkmx")
+time_start = 60
+time_end = 180
+enemy = ExtResource("4_7ihv4")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_4vs3k"]
+script = ExtResource("2_hpkmx")
+time_start = 180
+time_end = 210
+enemy = ExtResource("5_w8mkt")
+enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_07aqy"]
+script = ExtResource("2_hpkmx")
+time_start = 210
+time_end = 240
+enemy = ExtResource("4_7ihv4")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_lxywf"]
+script = ExtResource("2_hpkmx")
+time_start = 240
+time_end = 270
+enemy = ExtResource("5_w8mkt")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_l525u"]
+script = ExtResource("2_hpkmx")
+time_start = 240
+time_end = 240
+enemy = ExtResource("6_lcx8f")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jnsp3"]
+script = ExtResource("2_hpkmx")
+time_start = 270
+time_end = 300
+enemy = ExtResource("4_7ihv4")
+enemy_num = 4
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_snhge"]
+script = ExtResource("2_hpkmx")
+time_start = 300
+time_end = 300
+enemy = ExtResource("7_77qo1")
+enemy_num = 1
+enemy_spawn_delay = 0
 
 [sub_resource type="Curve2D" id="Curve2D_gmud5"]
 _data = {
@@ -17,6 +95,7 @@ point_count = 5
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ye863")
+spawns = Array[ExtResource("2_hpkmx")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3"), SubResource("Resource_snhge")])
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -980
@@ -78,6 +157,7 @@ text = "Game Over"
 script = ExtResource("4_fnh0s")
 
 [node name="TimerLabel" type="Label" parent="HUD"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -93,7 +173,6 @@ text = "05:00"
 unique_name_in_owner = true
 wait_time = 300.0
 one_shot = true
-autostart = true
 
 [node name="AudioManager" parent="." instance=ExtResource("12_onr3d")]
 
@@ -135,3 +214,4 @@ position = Vector2(1018, 887)
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
 [connection signal="died" from="Mico" to="." method="_on_mico_died"]
+[connection signal="start_waves" from="Mico" to="." method="_on_mico_start_waves"]
