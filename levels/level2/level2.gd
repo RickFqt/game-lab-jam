@@ -50,7 +50,7 @@ func _on_timer_timeout() -> void:
 
 func _on_player_health_depleted() -> void:
 	%GameOver.visible = true
-	$AudioManager.para_tudo()
+	$AudioManager2.para_tudo()
 	get_tree().paused = true
 
 
@@ -71,3 +71,6 @@ func _on_mico_start_waves() -> void:
 	$HUD/TimerLabel.visible = true
 	%BossTimer.start()
 	%SpawnTimer.start()
+
+func _on_mico_stage_changed() -> void:
+	$AudioManager2.change_song()

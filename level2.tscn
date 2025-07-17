@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_77qo1"]
 [ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
-[ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_onr3d"]
+[ext_resource type="PackedScene" uid="uid://cd0xs4853dond" path="res://audio/audio_manager2.tscn" id="13_sqbgn"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
 script = ExtResource("2_hpkmx")
@@ -174,8 +174,6 @@ unique_name_in_owner = true
 wait_time = 300.0
 one_shot = true
 
-[node name="AudioManager" parent="." instance=ExtResource("12_onr3d")]
-
 [node name="Mico" parent="." node_paths=PackedStringArray("arbustos") instance=ExtResource("5_78qjw")]
 position = Vector2(965, 458)
 arbustos = [NodePath("../Chests/Chest"), NodePath("../Chests/Chest2"), NodePath("../Chests/Chest3"), NodePath("../Chests/Chest4"), NodePath("../Chests/Chest5"), NodePath("../Chests/Chest6"), NodePath("../Chests/Chest7"), NodePath("../Chests/Chest8"), NodePath("../Chests/Chest9")]
@@ -183,35 +181,38 @@ arbustos = [NodePath("../Chests/Chest"), NodePath("../Chests/Chest2"), NodePath(
 [node name="Chests" type="Node2D" parent="."]
 
 [node name="Chest" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(497, 858)
+position = Vector2(736, 703)
 
 [node name="Chest2" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(1371, 859)
+position = Vector2(1199, 709)
 
 [node name="Chest3" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(1508, 553)
+position = Vector2(1302, 525)
 
 [node name="Chest4" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(1357, 242)
+position = Vector2(1249, 354)
 
 [node name="Chest5" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(917, 162)
+position = Vector2(993, 279)
 
 [node name="Chest6" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(523, 168)
+position = Vector2(762, 280)
 
 [node name="Chest7" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(160, 336)
+position = Vector2(603, 406)
 
 [node name="Chest8" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(53, 655)
+position = Vector2(608, 558)
 
 [node name="Chest9" parent="Chests" instance=ExtResource("6_f2pcn")]
-position = Vector2(1018, 887)
+position = Vector2(965, 707)
+
+[node name="AudioManager2" parent="." instance=ExtResource("13_sqbgn")]
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnMatoTimer" to="." method="_on_spawn_mato_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
 [connection signal="died" from="Mico" to="." method="_on_mico_died"]
+[connection signal="stage_changed" from="Mico" to="." method="_on_mico_stage_changed"]
 [connection signal="start_waves" from="Mico" to="." method="_on_mico_start_waves"]

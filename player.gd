@@ -179,6 +179,11 @@ func add_health(amount: int) -> void:
 func level_up():
 	print("Socorro")
 	sndLevelUp.play()
+	player_attributes.level += 1
+	experience -= experience_needed
+	experience = max(experience, 0)
+	experience_needed += int(experience_needed * 0.6)
+	%ExperienceBar.max_value = experience_needed
 	#lblLevel.text = str("Level: ",experience_level)
 	var tween = levelPanel.create_tween()
 	tween.tween_property(levelPanel,"position",Vector2(560,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
@@ -197,11 +202,7 @@ func level_up():
 		await weapon_chose
 		await get_tree().create_timer(0.1).timeout
 	#print("Nao parei")
-	player_attributes.level += 1
-	experience -= experience_needed
-	experience = max(experience, 0)
-	experience_needed += int(experience_needed * 0.6)
-	%ExperienceBar.max_value = experience_needed
+	
 	#draw_weapon_or_item()
 	player_attributes_changed.emit()
 	add_experience(0) # Just in case the player goes 2 or more levels up
