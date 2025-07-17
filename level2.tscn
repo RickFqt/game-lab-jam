@@ -177,6 +177,7 @@ one_shot = true
 [node name="Mico" parent="." node_paths=PackedStringArray("arbustos") instance=ExtResource("5_78qjw")]
 position = Vector2(965, 458)
 arbustos = [NodePath("../Chests/Chest"), NodePath("../Chests/Chest2"), NodePath("../Chests/Chest3"), NodePath("../Chests/Chest4"), NodePath("../Chests/Chest5"), NodePath("../Chests/Chest6"), NodePath("../Chests/Chest7"), NodePath("../Chests/Chest8"), NodePath("../Chests/Chest9")]
+bullet_speed = 200.0
 
 [node name="Chests" type="Node2D" parent="."]
 

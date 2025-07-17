@@ -1,11 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://daiiycohs4bc"]
+[gd_scene load_steps=9 format=3 uid="uid://daiiycohs4bc"]
 
 [ext_resource type="Script" path="res://levels/level2/Mico.gd" id="1_52sv5"]
 [ext_resource type="PackedScene" uid="uid://bftyrk80jvub5" path="res://levels/level2/banana.tscn" id="2_k2vmy"]
-[ext_resource type="Texture2D" uid="uid://btbxea1f3vwot" path="res://characters/slime/slime_body_hurt.png" id="2_usjsd"]
 [ext_resource type="PackedScene" uid="uid://ccbrhoxflxb4x" path="res://levels/level2/CloneMico.tscn" id="3_2pbyu"]
+[ext_resource type="Texture2D" uid="uid://ciknpwx7s4upe" path="res://textures/enemy/micoIdle.png" id="4_rxnom"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3cn7"]
+radius = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adkxm"]
+atlas = ExtResource("4_rxnom")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vudm5"]
+atlas = ExtResource("4_rxnom")
+region = Rect2(0, 36, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kv6vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adkxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vudm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Mico" type="CharacterBody2D"]
 collision_layer = 0
@@ -19,9 +42,11 @@ speed = 60.0
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s3cn7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_usjsd")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_kv6vb")
+autoplay = "default"
+frame_progress = 0.384247
 
 [node name="TouchZone" type="Area2D" parent="."]
 collision_layer = 0
