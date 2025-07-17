@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkw0t00nghww" path="res://levels/level2/chest.tscn" id="6_f2pcn"]
 [ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_lcx8f"]
 [ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_77qo1"]
-[ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_dgitn"]
+[ext_resource type="Texture2D" uid="uid://b30xbmo46pvmh" path="res://textures/background/dawn_of_the_gods_parede.png" id="8_ge2d3"]
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
 [ext_resource type="PackedScene" uid="uid://cd0xs4853dond" path="res://audio/audio_manager2.tscn" id="13_sqbgn"]
 
@@ -101,12 +101,12 @@ spawns = Array[ExtResource("2_hpkmx")]([SubResource("Resource_x7l6k"), SubResour
 z_index = -980
 texture_filter = 2
 texture_repeat = 2
-texture = ExtResource("8_dgitn")
+texture = ExtResource("8_ge2d3")
 region_enabled = true
 region_rect = Rect2(-16000, -16000, 40000, 20000)
 
 [node name="Player" parent="." instance=ExtResource("9_fs63n")]
-position = Vector2(968, 536)
+position = Vector2(949, 549)
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-352.427, -81.4876)
