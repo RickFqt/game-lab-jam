@@ -214,5 +214,6 @@ position = Vector2(965, 707)
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
 [connection signal="died" from="Mico" to="." method="_on_mico_died"]
+[connection signal="mico_hidden" from="Mico" to="." method="_on_mico_mico_hidden"]
 [connection signal="stage_changed" from="Mico" to="." method="_on_mico_stage_changed"]
 [connection signal="start_waves" from="Mico" to="." method="_on_mico_start_waves"]

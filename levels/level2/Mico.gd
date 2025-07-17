@@ -14,6 +14,7 @@ var is_fleeing: bool = false
 var clones: Array[CharacterBody2D] = []
 
 signal start_waves
+signal mico_hidden
 
 func initialize():
 	stage = 0
@@ -42,8 +43,9 @@ func _physics_process(delta: float) -> void:
 			stop_and_hide()
 	elif is_hidden:
 		# Detecta se o jogador se aproxima
-		if player.global_position.distance_to(global_position) < visibility_distance:
-			reveal_and_flee()
+		#if player.global_position.distance_to(global_position) < visibility_distance:
+			#reveal_and_flee()
+		pass
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -61,6 +63,7 @@ func stop_and_hide():
 	go_to_random_arbusto()
 	is_hidden = true
 	clear_clones()
+	mico_hidden.emit()
 	
 func throw_banana_at(dir: Vector2):
 	var p = banana_scene.instantiate()
@@ -98,6 +101,7 @@ func hide_in_nearest_arbusto():
 
 func go_to_random_arbusto():
 	current_arbusto = arbustos[randi() % arbustos.size()]
+	current_arbusto.has_mico = true
 	global_position = current_arbusto.global_position
 	$Sprite2D.visible = false
 
@@ -117,3 +121,6 @@ func _on_touch_zone_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(2.0).timeout # espera 2 segundos
 		$TouchZone/CollisionShape2D.call_deferred("set_disabled", false)
 		speed = original_speed
+
+func _on_mico_found():
+	reveal_and_flee()

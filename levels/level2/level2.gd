@@ -11,6 +11,7 @@ var spawn_timer: float = 0.0
 
 @export var spawns: Array[Spawn_info] = []
 @export var time = 0
+@onready var mico = $Mico
 
 func _ready() -> void:
 	%SpawnMatoTimer.wait_time = spawn_mato_interval
@@ -74,3 +75,11 @@ func _on_mico_start_waves() -> void:
 
 func _on_mico_stage_changed() -> void:
 	$AudioManager2.change_song()
+
+
+func _on_mico_mico_hidden() -> void:
+	var chests = get_node("Chests")
+
+	for chest in chests.get_children():
+		if chest.has_method("close"):
+			chest.close()
