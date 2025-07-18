@@ -11,18 +11,11 @@ var spawn_timer: float = 0.0
 
 @export var spawns: Array[Spawn_info] = []
 @export var time = 0
+@onready var mico = $Mico
 
 func _ready() -> void:
 	%SpawnMatoTimer.wait_time = spawn_mato_interval
-	%SpawnTimer.start()
-	%BossTimer.start()
-	%SpawnMatoTimer.start()
 	
-
-#func _process(delta: float) -> void:
-	#time_since_last_wave += delta
-	#if time_since_last_wave >= WAVE_DURATION:
-		#start_new_wave()
 
 func start_new_wave():
 	#current_wave += 1
@@ -30,14 +23,6 @@ func start_new_wave():
 	spawn_mato_interval = max(0.5, spawn_mato_interval - 0.1)  # Reduz o intervalo, mas mantém limite mínimo
 	%SpawnMatoTimer.wait_time = spawn_mato_interval
 	#print("Starting wave:", current_wave)
-
-#func spawn_mob(is_boss = false):
-	#var new_mob = preload("res://mob.tscn").instantiate()
-	#%PathFollow2D.progress_ratio = randf()
-	#new_mob.global_position = %PathFollow2D.global_position
-	#if is_boss:
-		#new_mob.change_to_boss()
-	#add_child(new_mob)
 
 func spawn_mato():
 	var new_mato = preload("res://mato.tscn").instantiate()
@@ -66,21 +51,35 @@ func _on_timer_timeout() -> void:
 
 func _on_player_health_depleted() -> void:
 	%GameOver.visible = true
-	$AudioManager.para_tudo()
+	$AudioManager2.para_tudo()
 	get_tree().paused = true
 
 
 func _on_boss_timer_timeout() -> void:
-	%SpawnMatoTimer.stop()
-	%SpawnTimer.stop()
-	
-	var boss_scene = load("res://levels/level1/BossRoom.tscn").instantiate()
-	add_child(boss_scene)
-	boss_scene.global_position = Vector2(20000, 20000)
-	$Player.global_position = Vector2(20000, 20000+ 528)
-	$AudioManager.start_boss_level1()
-	$Player.player_attributes.speed = 200
+	_on_player_health_depleted()
 
 
 func _on_spawn_mato_timer_timeout() -> void:
 	spawn_mato() # Replace with function body.
+
+
+func _on_mico_died() -> void:
+	$BossTimer.paused = true
+	%SpawnTimer.paused = true
+
+
+func _on_mico_start_waves() -> void:
+	$HUD/TimerLabel.visible = true
+	%BossTimer.start()
+	%SpawnTimer.start()
+
+func _on_mico_stage_changed() -> void:
+	$AudioManager2.change_song()
+
+
+func _on_mico_mico_hidden() -> void:
+	var chests = get_node("Chests")
+
+	for chest in chests.get_children():
+		if chest.has_method("close"):
+			chest.close()

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqjayu8xkc2jr"]
 
-[ext_resource type="Texture2D" uid="uid://c3frd51m251gl" path="res://textures/bush.png" id="1_4y5hv"]
+[ext_resource type="Texture2D" uid="uid://b6lhh5737iem3" path="res://textures/bush.png" id="1_4y5hv"]
 [ext_resource type="Script" path="res://mato.gd" id="1_w2sbx"]
-[ext_resource type="AudioStream" uid="uid://cbbhil5x32i48" path="res://audio/sfx/cut_grass.mp3" id="3_j41vv"]
+[ext_resource type="AudioStream" uid="uid://bpt08xfdauprl" path="res://audio/sfx/cut_grass.mp3" id="3_j41vv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nell"]
 size = Vector2(18, 16)

@@ -12,6 +12,7 @@ var stage: int = 1
 
 signal damaged
 signal died
+signal stage_changed
 
 func _ready() -> void:
 	health = max_health
@@ -41,6 +42,7 @@ func take_damage(damage: int):
 
 func change_stage(new_stage: int):
 	stage = new_stage
+	emit_signal("stage_changed")
 	adapt_behavior()
 	
 func adapt_behavior():

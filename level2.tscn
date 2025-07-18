@@ -1,0 +1,220 @@
+[gd_scene load_steps=24 format=3 uid="uid://dxhxgjysus05x"]
+
+[ext_resource type="Script" path="res://levels/level2/level2.gd" id="1_ye863"]
+[ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_hpkmx"]
+[ext_resource type="PackedScene" uid="uid://dxhl2r15hycxu" path="res://enemy/enemy_kobold_weak.tscn" id="3_onv1g"]
+[ext_resource type="PackedScene" uid="uid://bvfv2cdtspxq8" path="res://enemy/enemy_kobold_strong.tscn" id="4_7ihv4"]
+[ext_resource type="Script" path="res://levels/level2/hud.gd" id="4_fnh0s"]
+[ext_resource type="PackedScene" uid="uid://daiiycohs4bc" path="res://levels/level2/Mico.tscn" id="5_78qjw"]
+[ext_resource type="PackedScene" uid="uid://d1gl57haltvld" path="res://enemy/enemy_cyclops.tscn" id="5_w8mkt"]
+[ext_resource type="PackedScene" uid="uid://bpkw0t00nghww" path="res://levels/level2/chest.tscn" id="6_f2pcn"]
+[ext_resource type="PackedScene" uid="uid://dx62af6jucfs" path="res://enemy/enemy_juggernaut.tscn" id="6_lcx8f"]
+[ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_77qo1"]
+[ext_resource type="Texture2D" uid="uid://b30xbmo46pvmh" path="res://textures/background/dawn_of_the_gods_parede.png" id="8_ge2d3"]
+[ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
+[ext_resource type="PackedScene" uid="uid://cd0xs4853dond" path="res://audio/audio_manager2.tscn" id="13_sqbgn"]
+
+[sub_resource type="Resource" id="Resource_x7l6k"]
+script = ExtResource("2_hpkmx")
+time_start = 0
+time_end = 30
+enemy = ExtResource("3_onv1g")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_dway5"]
+script = ExtResource("2_hpkmx")
+time_start = 30
+time_end = 210
+enemy = ExtResource("3_onv1g")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_sf0nw"]
+script = ExtResource("2_hpkmx")
+time_start = 60
+time_end = 180
+enemy = ExtResource("4_7ihv4")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_4vs3k"]
+script = ExtResource("2_hpkmx")
+time_start = 180
+time_end = 210
+enemy = ExtResource("5_w8mkt")
+enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_07aqy"]
+script = ExtResource("2_hpkmx")
+time_start = 210
+time_end = 240
+enemy = ExtResource("4_7ihv4")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_lxywf"]
+script = ExtResource("2_hpkmx")
+time_start = 240
+time_end = 270
+enemy = ExtResource("5_w8mkt")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_l525u"]
+script = ExtResource("2_hpkmx")
+time_start = 240
+time_end = 240
+enemy = ExtResource("6_lcx8f")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_jnsp3"]
+script = ExtResource("2_hpkmx")
+time_start = 270
+time_end = 300
+enemy = ExtResource("4_7ihv4")
+enemy_num = 4
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_snhge"]
+script = ExtResource("2_hpkmx")
+time_start = 300
+time_end = 300
+enemy = ExtResource("7_77qo1")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Curve2D" id="Curve2D_gmud5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15, -497, 0, 0, 0, 0, 2464, -483, 0, 0, 0, 0, 2464, 1075, 0, 0, 0, 0, 5, 1082, 0, 0, 0, 0, 8, -490)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ye863")
+spawns = Array[ExtResource("2_hpkmx")]([SubResource("Resource_x7l6k"), SubResource("Resource_dway5"), SubResource("Resource_sf0nw"), SubResource("Resource_4vs3k"), SubResource("Resource_07aqy"), SubResource("Resource_lxywf"), SubResource("Resource_l525u"), SubResource("Resource_jnsp3"), SubResource("Resource_snhge")])
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -980
+texture_filter = 2
+texture_repeat = 2
+texture = ExtResource("8_ge2d3")
+region_enabled = true
+region_rect = Rect2(-16000, -16000, 40000, 20000)
+
+[node name="Player" parent="." instance=ExtResource("9_fs63n")]
+position = Vector2(949, 549)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-352.427, -81.4876)
+scale = Vector2(0.285482, 0.266624)
+curve = SubResource("Curve2D_gmud5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(15, -497)
+rotation = 0.00571656
+
+[node name="SpawnMatoTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 161
+text = "Game Over"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_fnh0s")
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_top = 50.0
+offset_right = 61.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "05:00"
+
+[node name="BossTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 300.0
+one_shot = true
+
+[node name="Mico" parent="." node_paths=PackedStringArray("arbustos") instance=ExtResource("5_78qjw")]
+position = Vector2(965, 458)
+arbustos = [NodePath("../Chests/Chest"), NodePath("../Chests/Chest2"), NodePath("../Chests/Chest3"), NodePath("../Chests/Chest4"), NodePath("../Chests/Chest5"), NodePath("../Chests/Chest6"), NodePath("../Chests/Chest7"), NodePath("../Chests/Chest8"), NodePath("../Chests/Chest9")]
+bullet_speed = 200.0
+
+[node name="Chests" type="Node2D" parent="."]
+
+[node name="Chest" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(736, 703)
+
+[node name="Chest2" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1199, 709)
+
+[node name="Chest3" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1302, 525)
+
+[node name="Chest4" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(1249, 354)
+
+[node name="Chest5" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(993, 279)
+
+[node name="Chest6" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(762, 280)
+
+[node name="Chest7" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(603, 406)
+
+[node name="Chest8" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(608, 558)
+
+[node name="Chest9" parent="Chests" instance=ExtResource("6_f2pcn")]
+position = Vector2(965, 707)
+
+[node name="AudioManager2" parent="." instance=ExtResource("13_sqbgn")]
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SpawnMatoTimer" to="." method="_on_spawn_mato_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="died" from="Mico" to="." method="_on_mico_died"]
+[connection signal="mico_hidden" from="Mico" to="." method="_on_mico_mico_hidden"]
+[connection signal="stage_changed" from="Mico" to="." method="_on_mico_stage_changed"]
+[connection signal="start_waves" from="Mico" to="." method="_on_mico_start_waves"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd0xs4853dond"]
+
+[ext_resource type="Script" path="res://audio/snd_music2.gd" id="1_66rtl"]
+[ext_resource type="AudioStream" uid="uid://daoy4acn6w07x" path="res://audio/music/level2_primeiro.mp3" id="2_nw1py"]
+[ext_resource type="AudioStream" uid="uid://eeyex03cwegg" path="res://audio/music/level2_segundo.mp3" id="3_cekfi"]
+[ext_resource type="AudioStream" uid="uid://dkr6ub6lmb1og" path="res://audio/music/level2_terceiro.mp3" id="4_7icab"]
+[ext_resource type="AudioStream" uid="uid://7nmjjj1wwa6f" path="res://audio/music/level2_quarto.mp3" id="5_yha5s"]
+
+[node name="AudioManager2" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_66rtl")
+
+[node name="first" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_nw1py")
+parameters/looping = true
+
+[node name="second" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cekfi")
+parameters/looping = true
+
+[node name="third" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7icab")
+parameters/looping = true
+
+[node name="fourth" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yha5s")
+parameters/looping = true
