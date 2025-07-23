@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxhxgjysus05x"]
+[gd_scene load_steps=26 format=3 uid="uid://dxhxgjysus05x"]
 
 [ext_resource type="Script" path="res://levels/level2/level2.gd" id="1_ye863"]
 [ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_hpkmx"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b30xbmo46pvmh" path="res://textures/background/dawn_of_the_gods_parede.png" id="8_ge2d3"]
 [ext_resource type="PackedScene" uid="uid://dt4d6pm5r0re2" path="res://player.tscn" id="9_fs63n"]
 [ext_resource type="PackedScene" uid="uid://cd0xs4853dond" path="res://audio/audio_manager2.tscn" id="13_sqbgn"]
+[ext_resource type="PackedScene" uid="uid://d9e8f7g6h5i4j" path="res://pause_menu.tscn" id="14_pause"]
+[ext_resource type="PackedScene" uid="uid://b8m9n7o6p5q4r" path="res://game_over.tscn" id="15_gameover"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
 script = ExtResource("2_hpkmx")
@@ -125,33 +127,8 @@ wait_time = 0.2
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameOver" parent="." instance=ExtResource("15_gameover")]
 unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.501961)
-
-[node name="Label" type="Label" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -11.5
-offset_right = 43.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 161
-text = "Game Over"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("4_fnh0s")
@@ -207,6 +184,8 @@ position = Vector2(608, 558)
 
 [node name="Chest9" parent="Chests" instance=ExtResource("6_f2pcn")]
 position = Vector2(965, 707)
+
+[node name="PauseMenu" parent="." instance=ExtResource("14_pause")]
 
 [node name="AudioManager2" parent="." instance=ExtResource("13_sqbgn")]
 
