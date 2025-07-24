@@ -35,6 +35,9 @@ func _on_resume_pressed():
 
 func _on_main_menu_pressed():
 	get_tree().paused = false
+	# Resume main menu music when returning to main menu
+	if has_node("/root/MainMenuAudio"):
+		get_node("/root/MainMenuAudio").play_main_menu_music()
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func _on_quit_pressed():

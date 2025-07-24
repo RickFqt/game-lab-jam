@@ -79,6 +79,10 @@ run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
+[autoload]
+
+MainMenuAudio="*res://main_menu_audio.tscn"
+
 [display]
 
 window/size/viewport_width=1920

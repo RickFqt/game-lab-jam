@@ -14,17 +14,21 @@ script = ExtResource("1_esh2j")
 stream = ExtResource("1_ald1k")
 volume_db = 5.0
 autoplay = true
+bus = &"Music"
 
 [node name="musica_meio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_60t8j")
 volume_db = 5.0
+bus = &"Music"
 
 [node name="musica_final" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gqpnl")
 volume_db = 5.0
+bus = &"Music"
 
 [node name="musica_boss_level1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_rfu6r")
+bus = &"Music"
 
 [connection signal="finished" from="musica_inicio" to="." method="_on_musica_inicio_finished"]
 [connection signal="finished" from="musica_meio" to="." method="_on_musica_meio_finished"]

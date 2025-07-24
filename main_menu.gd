@@ -26,6 +26,7 @@ func _ready():
 	_load_settings()
 
 func _on_play_pressed():
+	# Don't stop music - let it continue in level selection
 	# Load the level selection screen
 	get_tree().change_scene_to_file("res://level_select.tscn")
 
@@ -34,6 +35,9 @@ func _on_options_pressed():
 	options_menu.visible = true
 
 func _on_quit_pressed():
+	# Stop main menu music when quitting
+	if has_node("/root/MainMenuAudio"):
+		get_node("/root/MainMenuAudio").stop_music()
 	# Quit the game
 	get_tree().quit()
 
@@ -48,14 +52,14 @@ func _on_master_volume_changed(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
 
 func _on_music_volume_changed(value: float):
-	# Adjust music volume
+	# Adjust music volume using the Music bus
 	var db_value = linear_to_db(value / 100.0)
 	var music_bus = AudioServer.get_bus_index("Music")
 	if music_bus != -1:
 		AudioServer.set_bus_volume_db(music_bus, db_value)
 
 func _on_sfx_volume_changed(value: float):
-	# Adjust SFX volume
+	# Adjust SFX volume using the SFX bus
 	var db_value = linear_to_db(value / 100.0)
 	var sfx_bus = AudioServer.get_bus_index("SFX")
 	if sfx_bus != -1:

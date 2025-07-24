@@ -11,10 +11,16 @@ func _ready():
 	back_button.pressed.connect(_on_back_pressed)
 
 func _on_level1_pressed():
+	# Stop main menu music when entering level
+	if has_node("/root/MainMenuAudio"):
+		get_node("/root/MainMenuAudio").stop_music()
 	# Load level 1 (survivors_game.tscn)
 	get_tree().change_scene_to_file("res://survivors_game.tscn")
 
 func _on_level2_pressed():
+	# Stop main menu music when entering level
+	if has_node("/root/MainMenuAudio"):
+		get_node("/root/MainMenuAudio").stop_music()
 	# Load level 2
 	get_tree().change_scene_to_file("res://level2.tscn")
 
