@@ -11,25 +11,31 @@ var experience_needed: int = 10
 var weapons_inventory : Dictionary = {}
 var items_inventory : Array = []
 
-var weapon_scenes: Array[PackedScene]
+var weapon_scenes: Array[PackedScene] = [
+	preload("res://weapons/scenes/gun.tscn"),
+	preload("res://weapons/scenes/kabum.tscn"),
+	preload("res://weapons/scenes/rotation_circle.tscn"),
+	preload("res://weapons/scenes/boomerang_circle.tscn"),
+	preload("res://weapons/scenes/araraCircle.tscn")
+]
 
 var stunned: bool = false
 
 
 var weapons_image_path : Dictionary = {
-	"gun": ["res://textures/GUI/weapons/1_back.png", 
+	"gun": [preload("res://textures/GUI/weapons/1_back.png"), 
 			"Atira um projétil no inimigo mais próximo",
 			"Beija-flor"],
-	"kabum": ["res://textures/GUI/weapons/50_back.png",
+	"kabum": [preload("res://textures/GUI/weapons/50_back.png"),
 			"A cada 2 minutos, RASGA A TELA.",
 			"Onça"],
-	"rotation_circle": ["res://textures/GUI/weapons/2_back.png",
+	"rotation_circle": [preload("res://textures/GUI/weapons/2_back.png"),
 			"Invoca uma tartaruga que orbita ao redor do player.",
 			"Tartaruga"],
-	"boomerang_circle": ["res://textures/GUI/weapons/20_back.png",
+	"boomerang_circle": [preload("res://textures/GUI/weapons/20_back.png"),
 			"Atira bananas-bumerangue.",
 			"Mico"],
-	"araraCircle": ["res://textures/GUI/weapons/10_back.png",
+	"araraCircle": [preload("res://textures/GUI/weapons/10_back.png"),
 			"Araras voam sobre seus inimigos.",
 			"Arara"],
 }
@@ -47,24 +53,9 @@ func _ready():
 	%ExperienceBar.max_value = experience_needed
 	%ExperienceBar.value = 0
 	%AnimatedSprite2D.play("walking")
-	load_weapon_scenes()
+	# Weapon scenes are now preloaded, no need to load them dynamically
 	level_up()
 	#add_experience(100000000)
-
-func load_weapon_scenes():
-	var weapons_dir = DirAccess.open("res://weapons/scenes")
-	if weapons_dir:
-		weapons_dir.list_dir_begin()
-		var file_name = weapons_dir.get_next()
-		while file_name != "":
-			if !weapons_dir.current_is_dir():
-				var file_path = "res://weapons/scenes/" + file_name
-				if file_path.ends_with(".tscn"):
-					var scene = load(file_path)
-					weapon_scenes.append(scene)
-			file_name = weapons_dir.get_next()
-	else:
-		print("An error occurred when trying to access the weapons_dir path.")
 
 func _physics_process(delta: float) -> void:
 	if stunned:
@@ -196,8 +187,15 @@ func level_up():
 			var option_choice = itemOptions.instantiate()
 			option_choice.item_scene = weapon_scene
 			upgradeOptions.add_child(option_choice)
-				
+		
+		# Better handling for web exports
 		get_tree().paused = true
+		
+		# Force a frame update for HTML5 exports
+		if OS.has_feature("web"):
+			await get_tree().process_frame
+			await get_tree().process_frame
+		
 		#print("Parei?")
 		await weapon_chose
 		await get_tree().create_timer(0.1).timeout

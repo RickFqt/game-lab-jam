@@ -171,7 +171,7 @@ columns = 6
 
 [node name="LevelUp" type="Panel" parent="GUILayer/Control"]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 layout_mode = 0
 offset_left = 2472.0
 offset_top = 72.0

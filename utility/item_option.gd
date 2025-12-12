@@ -22,7 +22,8 @@ func _ready() -> void:
 			lblName.text = weapon.weapon_name
 			lblLevel.text = "Level: " + str(weapon.level + 1)
 		else:
-			itemIcon.texture = load(player.weapons_image_path[weapon_name][0])
+			# Use preloaded texture instead of load() for HTML5 compatibility
+			itemIcon.texture = player.weapons_image_path[weapon_name][0]
 			lblDescription.text = player.weapons_image_path[weapon_name][1]
 			lblName.text = player.weapons_image_path[weapon_name][2]
 	#connect("selected_upgrade", Callable(player, "draw_weapon_or_item"))
@@ -33,6 +34,9 @@ func _ready() -> void:
 func _input(event):
 	if event.is_action("click"):
 		if mouse_over:
+			# Add a small delay for web exports to ensure proper event handling
+			if OS.has_feature("web"):
+				await get_tree().process_frame
 			emit_signal("selected_upgrade", item_scene)
 
 func _on_mouse_entered() -> void:

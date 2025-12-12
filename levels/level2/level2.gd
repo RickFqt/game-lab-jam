@@ -50,13 +50,13 @@ func _on_timer_timeout() -> void:
 
 
 func _on_player_health_depleted() -> void:
-	%GameOver.visible = true
+	%GameOver.show_game_over()
 	$AudioManager2.para_tudo()
-	get_tree().paused = true
 
 
 func _on_boss_timer_timeout() -> void:
-	_on_player_health_depleted()
+	%GameOver.show_game_over()
+	$AudioManager2.para_tudo()
 
 
 func _on_spawn_mato_timer_timeout() -> void:

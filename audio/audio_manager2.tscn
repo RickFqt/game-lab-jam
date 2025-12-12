@@ -13,15 +13,19 @@ script = ExtResource("1_66rtl")
 [node name="first" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_nw1py")
 parameters/looping = true
+bus = &"Music"
 
 [node name="second" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_cekfi")
 parameters/looping = true
+bus = &"Music"
 
 [node name="third" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7icab")
 parameters/looping = true
+bus = &"Music"
 
 [node name="fourth" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_yha5s")
 parameters/looping = true
+bus = &"Music"

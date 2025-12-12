@@ -11,6 +11,7 @@ imported/
 bin/
 *.exe
 *.pck
+.vscode
 
 # Configurações locais específicas de usuário
 *.tmp
