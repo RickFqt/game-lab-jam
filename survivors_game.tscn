@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bbe4htkwitbqg" path="res://enemy/enemy_super.tscn" id="7_m3mph"]
 [ext_resource type="Texture2D" uid="uid://eulcs15jnppx" path="res://textures/background/grass_tileset_vs.png" id="8_c38c0"]
 [ext_resource type="PackedScene" uid="uid://c2n2hkml1olkv" path="res://audio/audio_manager.tscn" id="12_ljdnk"]
-[ext_resource type="PackedScene" uid="uid://d9e8f7g6h5i4j" path="res://pause_menu.tscn" id="13_pause"]
-[ext_resource type="PackedScene" uid="uid://b8m9n7o6p5q4r" path="res://game_over.tscn" id="14_gameover"]
+[ext_resource type="PackedScene" uid="uid://e0dt5jwwxndr" path="res://pause_menu.tscn" id="13_pause"]
+[ext_resource type="PackedScene" uid="uid://b8nan7o6p5q4r" path="res://game_over.tscn" id="14_gameover"]
 
 [sub_resource type="Resource" id="Resource_x7l6k"]
 script = ExtResource("2_exbdq")
@@ -153,7 +153,6 @@ unique_name_in_owner = true
 
 [node name="BossTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 300.0
 one_shot = true
 autostart = true
 

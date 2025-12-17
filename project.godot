@@ -82,6 +82,8 @@ config/icon="res://icon.png"
 [autoload]
 
 MainMenuAudio="*res://main_menu_audio.tscn"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [display]
 
@@ -95,7 +97,7 @@ project/assembly_name="Getting started with Godot 4"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg")
 
 [input]
 

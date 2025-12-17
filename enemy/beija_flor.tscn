@@ -1,9 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqqn5bl0ipivk"]
+[gd_scene load_steps=23 format=3 uid="uid://dqqn5bl0ipivk"]
 
 [ext_resource type="Script" path="res://enemy/beija_flor.gd" id="1_41sqm"]
 [ext_resource type="AudioStream" uid="uid://dmpxlvej5fp51" path="res://audio/sfx/enemy_hit.ogg" id="2_xgryl"]
 [ext_resource type="Texture2D" uid="uid://dr28ktaa2t2sm" path="res://textures/bossFlor.png" id="3_0diih"]
 [ext_resource type="Shader" path="res://shaders/invertcolors.gdshader" id="3_mwd6p"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="5_vuw5b"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="6_mgf0n"]
+[ext_resource type="Script" path="res://ai/leaves/LookAtPlayerAction.gd" id="7_ibg2r"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_4xc84"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="9_w0pot"]
+[ext_resource type="Script" path="res://ai/leaves/HasReachedRequiredStageCondition.gd" id="11_ha7cl"]
+[ext_resource type="Script" path="res://ai/leaves/ShootAction.gd" id="11_ipbcs"]
+[ext_resource type="Script" path="res://ai/leaves/ChaseAction.gd" id="12_xrixg"]
+[ext_resource type="Script" path="res://ai/leaves/BossDynamicCooldownDecorator.gd" id="13_shfer"]
+[ext_resource type="Script" path="res://ai/leaves/DashAction.gd" id="14_6hfv2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3if2b"]
 radius = 5.25595
@@ -95,16 +105,50 @@ libraries = {
 stream = ExtResource("2_xgryl")
 volume_db = -20.0
 
-[node name="ShootTimer" type="Timer" parent="."]
-
-[node name="DashTimer" type="Timer" parent="."]
-
-[node name="ChaseTimer" type="Timer" parent="."]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_vi6je")
 position = Vector2(0, -1.5)
 scale = Vector2(-0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_gyud0")
 autoplay = "default"
-frame_progress = 0.0377922
+frame_progress = 0.481071
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("5_vuw5b")
+blackboard = NodePath("@Node@17402")
+actor = NodePath("..")
+
+[node name="SimpleParallelComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("6_mgf0n")
+
+[node name="LookAtPlayerAction" type="Node" parent="BeehaveTree/SimpleParallelComposite"]
+script = ExtResource("7_ibg2r")
+
+[node name="CombatSelector" type="Node" parent="BeehaveTree/SimpleParallelComposite"]
+script = ExtResource("8_4xc84")
+
+[node name="CooldownDashDecorator" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector"]
+script = ExtResource("13_shfer")
+cooldown_type = "current_dash_cooldown"
+
+[node name="DashAction" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector/CooldownDashDecorator"]
+script = ExtResource("14_6hfv2")
+
+[node name="CooldownShootDecorator" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector"]
+script = ExtResource("13_shfer")
+
+[node name="ShootAction" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector/CooldownShootDecorator"]
+script = ExtResource("11_ipbcs")
+
+[node name="ChaseSequence" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector"]
+script = ExtResource("9_w0pot")
+
+[node name="HasReachedRequiredStageCondition" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector/ChaseSequence"]
+script = ExtResource("11_ha7cl")
+
+[node name="CooldownChaseDecorator" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector/ChaseSequence"]
+script = ExtResource("13_shfer")
+cooldown_type = "current_chase_cooldown"
+
+[node name="ChaseAction" type="Node" parent="BeehaveTree/SimpleParallelComposite/CombatSelector/ChaseSequence/CooldownChaseDecorator"]
+script = ExtResource("12_xrixg")
